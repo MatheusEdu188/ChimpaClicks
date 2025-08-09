@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChimpaClick</title>
+
+    <link rel="stylesheet" href="./css/combate.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Bungee&display=swap"
+        rel="stylesheet">
+
+
+</head>
+
+<body>
+    <img class="ringuedeluta" src="./assets/imgs/ringue.png" alt="">
+    <nav>
+        <div class="vidas">
+            <div class="vidaPersonagens">
+                <h2 id="VidaProta">100</h2>
+                <h2 id="VidaOponente">600</h2>
+            </div>
+
+        </div>
+        <div class="vitorias">
+            <img id="trofeuIcon" src="./assets/imgs/icons/trofeuicon.png" alt="">
+            <h2 id="win">0</h2>
+        </div>
+        <ul class="escolhaP">
+            <li><button class="bottaoEscolhaP" data-id="1" id="Marugori">300+</button></li>
+            <li><button data-id="2" class="bottaoEscolhaP" id="Goku">5K</button></li>
+            <li><button data-id="3" class="bottaoEscolhaP" id="Saitama">100K</button></li>
+            <li><button data-id="4" class="bottaoEscolhaP" id="Gaybriel">1M</button></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+            <div class="ringue">
+                <div class="lutadores">
+                    <div class="lutador1">
+                        <img class="prota lutador" src="./assets/imgs/Lutas/MonkeyPoseFight.png" alt="">
+                    </div>
+                    <div class="lutador2">
+                        <img class="oponente lutador" src="./assets/imgs/Lutas/Macaco forte em pose de luta.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="modalVitoria" class="modal">
+            <div class="modal-content">
+                <h2>Parabéns!</h2>
+                <p>Você venceu a partida!</p>
+                <button id="fecharModal">Reiniciar</button>
+            </div>
+        </div>
+
+
+        <div id="modalDerrota" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span id="fecharModalDerrota" class="fechar">&times;</span>
+                <h2>Você perdeu!</h2>
+                <p>Tente novamente para melhorar sua performance.</p>
+                <button id="botaoTentarNovamente">Tentar novamente</button>
+            </div>
+        </div>
+
+
+    </main>
+
+
+
+    <script type="module" src="./js/combate.js" defer></script>
+</body>
+
+</html>

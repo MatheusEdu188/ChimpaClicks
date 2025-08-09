@@ -1,0 +1,439 @@
+* {
+    margin: 0;
+}
+
+body{
+    overflow: hidden;
+
+}
+
+
+
+main {
+    background: #9c9900;
+    background: linear-gradient(100deg, rgba(156, 153, 0, 1) 0%, rgba(255, 238, 0, 1) 52%, rgba(250, 250, 130, 1) 90%);
+    height: 200vw;
+    font-family: "Roboto", sans-serif;
+
+
+}
+
+.monkey {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.divname {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.combateDiv {
+    top: 50%;
+    position: absolute;
+    right: 5%;
+    cursor: pointer;
+    z-index: 10;
+
+}
+
+.combate {
+    width: 10vw;
+    border-radius: 100px;
+}
+
+#monkeyimg {
+    width: 300px;
+    cursor: pointer;
+    transition: ease 0.10s
+}
+
+#monkeyimg:active {
+    transform: scale(1.2);
+}
+
+.cashmonkey {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.shop {
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    top: 40%;
+    left: 2%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+.pedirCasamento {
+    max-width: 50px;
+    position: absolute;
+    top: 20%;
+    z-index: 15;
+    left: 88%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.NameMonkey {
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px 4px black;
+}
+
+#Upgrade {
+    max-width: 10vw;
+    position: absolute;
+    z-index: 11;
+
+}
+
+#carrinho {
+    max-width: 10vw;
+    position: relative;
+    z-index: 10;
+
+}
+
+.loja {
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    top: 40%;
+    right: 0;
+    transform: translate(-50%, -50%);
+
+}
+
+.tituloupgrade {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.upgrade {
+    border: solid 1px black;
+    background-color: rgb(255, 123, 0);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+
+.upgrades {
+    display: flex;
+    flex-direction: column;
+    top: 10%;
+    left: 10%;
+    width: 60%;
+
+    position: relative;
+    z-index: 10;
+
+    position: absolute;
+
+
+
+
+}
+
+.cost {
+    color: black;
+}
+
+#preco {
+    color: rgb(8, 59, 1);
+    font-size: 20px;
+}
+
+.Elementos {
+    z-index: 1;
+    position: relative;
+
+
+
+}
+
+
+
+.modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+
+
+}
+
+#modalCasar {
+    display: none;
+}
+
+.modalloja {
+    display: none;
+}
+
+.modallogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    top: 0;
+
+}
+
+.nomeverdadeiro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.tituloLogin {
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border-radius: 5px;
+}
+
+
+.InputNomeVerdadeiro {
+    margin-top: 20px;
+}
+
+.botaoLogin {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: orange;
+    border: none;
+    margin-top: 10px;
+}
+
+
+.inputLogin {
+    margin-top: 20px;
+    height: 20px;
+}
+
+.ColocarNome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modalLoginBody {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+#modalBody {
+
+    background-image: url(../assets/backgroundmodal.png);
+    position: relative;
+    width: 50%;
+    height: 90%;
+    overflow-y: auto;
+    display: block;
+    border: solid 2px black;
+    border-radius: 5px;
+
+}
+
+#modalBody2 {
+
+    background-image: url(../assets/backgroundmodal.png);
+    position: relative;
+    width: 50%;
+    height: 90%;
+    overflow-y: auto;
+    display: block;
+    border: solid 2px black;
+    border-radius: 5px;
+
+}
+
+#modalBody3 {
+
+    background-image: url(../assets/backgroundmodal.png);
+    position: relative;
+    width: 50%;
+    height: 90%;
+    overflow-y: auto;
+    display: block;
+    border: solid 2px black;
+    border-radius: 5px;
+
+}
+
+#modalBody3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#Resultado {
+    font-size: 40px;
+
+
+}
+
+#msgResultado {
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    background-color: white;
+    padding: 10px;
+}
+
+
+
+.divLojaItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 10%;
+}
+
+.itemLoja {
+    border-radius: 50px;
+    background-color: white;
+    width: 100px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.trofeus {
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    color: white;
+}
+
+.auras {
+    color: white;
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 30px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+
+.spanAuraTrofeu{
+    color: rgb(2, 2, 2);
+}
+
+
+
+
+
+#coraçãoicon {
+    width: 100px;
+    cursor: pointer;
+}
+
+.BodyLoja {
+    display: flex;
+}
+
+
+
+
+#fecharmodal {
+    top: 1%;
+    position: absolute;
+    font-size: 50px;
+    font-weight: 1000;
+    cursor: pointer;
+    left: 4%;
+}
+
+
+
+
+
+
+
+
+
+
+
+.upgrades, .BodyLoja {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 10px; 
+  padding: 10px;
+}
+
+.upgrade, .divLojaItem {
+  flex: 1 1 150px;
+  max-width: 200px; 
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  background: #fafafa;
+  cursor: pointer;
+  text-align: center;
+}
+
+.itemLoja, .upgrade img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 8px auto;
+}
+
+.precoLoja, .tituloupgrade {
+  font-size: 1rem;
+}
+
+
+@media (max-width: 600px) {
+  .upgrade, .divLojaItem {
+    flex: 1 1 100%; 
+    max-width: 100%;
+  }
+  
+  .monkeycoins, .auras, .trofeus {
+    font-size: 1.2rem;
+    padding: 5px;
+  }
+
+  #monkeyimg {
+    max-width: 80vw;
+    height: auto;
+  }
+}
