@@ -37,7 +37,7 @@ const lojaList = [
     },
     {
         nome: "Anabolizante",
-        img: "assets/imgs/icons/Bomba.png",
+        img: "assets/imgs/icons/bomba.png",
         aura: 2500,
         preco: 100000000,
     }
@@ -100,6 +100,7 @@ for (let i in lojaList) {
                 cash -= 100000000
                 aura += 10000
                 quantidadeDano += 200
+                BarraVidaProta += 250
                 localStorage.setItem("quantidadeDano", quantidadeDano);
                 monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
                 localStorage.setItem("cash", cash);
@@ -310,7 +311,7 @@ const funcaoUpgrade3 = function (valorUpgrade, qtd) {
 const funcaoUpgrade1 = function (valorUpgrade, aumento) {
     
     if (cash < 100) {
-        monkeybutton.src = "./assets/monkey-removebg-preview.png"
+        monkeybutton.src = "/assets/monkey-removebg-preview.png"
 
     }
     if (cash >= valorUpgrade) {
@@ -455,19 +456,19 @@ monkeybutton.addEventListener("click", () => {
         clearTimeout(imgtimeout)
     }
     if (cash < 50) {
-        monkeybutton.src = "./assets/monkey-removebg-preview.png"
+        monkeybutton.src = "assets/monkey-removebg-preview.png"
 
         imgtimeout = setTimeout(() => {
-            monkeybutton.src = "./assets/macaco_triste-removebg-preview.png"
+            monkeybutton.src = "assets/macaco_triste-removebg-preview.png"
         }, 1000)
     }
 
     if (cash >= 50000) {
-        monkeybutton.src = "./assets/Macaco_com_Estilo_e_Confiança-removebg-preview.png"
+        monkeybutton.src = "assets/Macaco_com_Estilo_e_Confiança-removebg-preview.png"
     }
 
     if (cash >= 200000) {
-        monkeybutton.src = "./assets/Macaco Muito Rico.png"
+        monkeybutton.src = "assets/Macaco Muito Rico.png"
     }
 
     if (cash >= 100000) {
@@ -530,6 +531,7 @@ pedirCasamento.addEventListener("click", () => {
         msgResultado.innerHTML = "Ela te rejeitou e roubou toda sua fortuna"
         cash = 0
         contadordeespecial1 = 0
+        contadordeespecial2 = 0
         possibilidadeDeCasar = 0
         quantidadeDeVitorias = 1
         monkeycoins.textContent = cash
