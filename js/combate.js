@@ -10,7 +10,12 @@ const VidaOponente = document.querySelector("#VidaOponente")
 
 const bottaoEscolhaPersoangens = [...document.querySelectorAll(".bottaoEscolhaP")]
 
-let BarraVidaProta = 100
+
+let BarraVidaProta = Number(localStorage.getItem("BarraVidaProta")) || 100;
+VidaProta.innerHTML = BarraVidaProta
+
+
+
 
 let punchTimeOut;
 let cooldownPunch = false;
@@ -28,33 +33,33 @@ const listadeoponentes = [
     },
     {
         nome: "Chico Monkey",
-        vida: 5000,
-        srcPose: "assets/imgs/Lutas/chico...Quer dizer...Macacoem podedeluta.png",
-        srcDano: "assets/imgs/Lutas/chico...Quer dizer...Macacoem podedeluta.png",
-        Id: 2,
-        dano: 500,
-        quantidadeTrofeus: 5,
-        srcSoco: "assets/imgs/Lutas/chicomonkeydandosoco(2).png"
-    },
-    {
-        nome: "Chico Monkey",
         vida: 50000,
-        srcPose: "assets/imgs/Lutas/chico...Quer dizer...Macacoem podedeluta.png",
-        srcDano: "assets/imgs/Lutas/chico...Quer dizer...Macacoem podedeluta.png",
+        srcPose: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
+        srcDano: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
         Id: 2,
-        dano: 5000,
-        quantidadeTrofeus: 50,
-        srcSoco: "assets/imgs/Lutas/chicomonkeydandosoco(2).png"
+        dano: 50000,
+        quantidadeTrofeus: 500,
+        srcSoco: "assets/imgs/Lutas/chico monkey dando soco (2).png"
     },
     {
         nome: "Chico Monkey",
-        vida: 100000,
-        srcPose: "assets/imgs/Lutas/chico...Quer dizer...Macacoem podedeluta.png",
-        srcDano: "assets/imgs/Lutas/chico...Quer dizer...Macacoem podedeluta.png",
+        vida: 5000000,
+        srcPose: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
+        srcDano: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
         Id: 2,
-        dano: 10000,
-        quantidadeTrofeus: 500,
-        srcSoco: "assets/imgs/Lutas/chicomonkeydandosoco(2).png"
+        dano: 500000,
+        quantidadeTrofeus: 5000,
+        srcSoco: "assets/imgs/Lutas/chico monkey dando soco (2).png"
+    },
+    {
+        nome: "Chico Monkey",
+        vida: 1000000000000,
+        srcPose: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
+        srcDano: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
+        Id: 2,
+        dano: 1000000000,
+        quantidadeTrofeus: 10000,
+        srcSoco: "assets/imgs/Lutas/chico monkey dando soco (2).png"
     }
 ]
 
@@ -127,7 +132,7 @@ prota.addEventListener("click", () => {
         cooldownPunch = false;
     }
 
-    BarraVidaOponente -= 10;
+    BarraVidaOponente -= quantidadeDano;
     VidaOponente.innerHTML = BarraVidaOponente;
 
     if (BarraVidaOponente <= 0) {

@@ -14,6 +14,7 @@ let contadordeespecial1 = Number(localStorage.getItem("contadordeespecial1")) ||
 let contadordeespecial2 = 0
 let imgtimeout = null
 let possibilidadeDeCasar = 0
+let BarraVidaProta = Number(localStorage.getItem("BarraVidaProta")) || 10;
 
 
 
@@ -104,6 +105,7 @@ for (let i in lojaList) {
                 localStorage.setItem("quantidadeDano", quantidadeDano);
                 monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
                 localStorage.setItem("cash", cash);
+                localStorage.setItem("BarraVidaProta", BarraVidaProta);
 
             }
 
@@ -485,7 +487,7 @@ monkeybutton.addEventListener("click", () => {
 
     }
     if (cash >= 10000000000000000) {
-        monkeybutton.src = "assets/macaco infinitamente rico(1).png"
+        monkeybutton.src = "assets/Macaco Interuniversal.png"
 
 
     }
@@ -511,9 +513,16 @@ const msgResultado = document.getElementById("msgResultado")
 
 
 
-
+let modalLoja = false;
 Upgrade.addEventListener("click", () => {
-    modalUpgrade.style.display = "flex"
+    if(modalLoja == false){
+        modalUpgrade.style.display = "flex"
+        modalLoja = true
+    } else if(modalLoja == true){
+        modalUpgrade.style.display = "none"
+        modalLoja = false
+
+    }
 })
 
 const somDerrota = new Audio("assets/audio/SomDerrota.m4a")
@@ -535,6 +544,8 @@ pedirCasamento.addEventListener("click", () => {
         possibilidadeDeCasar = 0
         quantidadeDeVitorias = 1
         monkeycoins.textContent = cash
+        trofeus.textContent = `Trofeus: 0`
+        auras.textContent = `Aura: 0`
         somDerrota.play()
 
 

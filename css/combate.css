@@ -46,9 +46,24 @@ body {
     
 }
 
+.combateDiv {
+    top: 50%;
+    position: absolute;
+    left: 2%;
+    cursor: pointer;
+    z-index: 10;
+
+}
+
+
+.combate {
+    width: 10vw;
+    border-radius: 100px;
+    
+}
+
 
 .protapunch {
-    transform: scaleX(-1);
     min-width: 50vh;
 }
 
@@ -190,7 +205,8 @@ body {
 }
 
 .modal-content {
-    background-color: white;
+    background-image: url("../assets/imgs/background.png");
+    border: solid 2px black;
     margin: 15% auto;
     padding: 30px;
     border-radius: 10px;

@@ -4,19 +4,23 @@
 
 body{
     overflow: hidden;
-
+    
 }
 
 
 
 main {
-    background: #9c9900;
-    background: linear-gradient(100deg, rgba(156, 153, 0, 1) 0%, rgba(255, 238, 0, 1) 52%, rgba(250, 250, 130, 1) 90%);
+    
+    background-image: url("../assets/imgs/background.png");
+    background-repeat: repeat;
     height: 200vw;
     font-family: "Roboto", sans-serif;
 
 
 }
+
+
+
 
 .monkey {
     display: flex;
@@ -66,6 +70,38 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #b57300;
+    background: linear-gradient(133deg, rgba(181, 115, 0, 1) 0%, rgba(255, 166, 0, 1) 51%, rgba(255, 164, 36, 1) 84%);
+    border: solid 2px rgb(0, 0, 0);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    font-family: 'Press Start 2P', cursive;
+}
+
+.outrasFortunas{
+    
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background: #b57300;
+    background: linear-gradient(133deg, rgba(181, 115, 0, 1) 0%, rgba(255, 166, 0, 1) 51%, rgba(255, 164, 36, 1) 84%);
+    border: solid 2px rgb(0, 0, 0);
+    margin-left: 10px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    
+
+}
+
+.containerCashMonkey{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
 }
 
 
@@ -334,9 +370,9 @@ main {
 
 .trofeus {
     margin-left: 20px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 500;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Press Start 2P', cursive;
     color: white;
 }
 
@@ -344,8 +380,8 @@ main {
     color: white;
     margin-top: 10px;
     margin-left: 20px;
-    font-size: 30px;
-    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-family: 'Press Start 2P', cursive;
     font-weight: 500;
 }
 
@@ -395,6 +431,7 @@ main {
   justify-content: center; 
   gap: 10px; 
   padding: 10px;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .upgrade, .divLojaItem {
@@ -404,9 +441,10 @@ main {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 8px;
-  background: #fafafa;
+  background: #ff7b00;
   cursor: pointer;
   text-align: center;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .itemLoja, .upgrade img {
@@ -414,10 +452,12 @@ main {
   height: auto;
   display: block;
   margin: 0 auto 8px auto;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .precoLoja, .tituloupgrade {
   font-size: 1rem;
+  font-family: 'Press Start 2P', cursive;
 }
 
 
@@ -428,8 +468,9 @@ main {
   }
   
   .monkeycoins, .auras, .trofeus {
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 5px;
+    font-family: 'Press Start 2P', cursive;
   }
 
   #monkeyimg {
