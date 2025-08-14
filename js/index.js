@@ -41,6 +41,12 @@ const lojaList = [
         img: "assets/imgs/icons/bomba.png",
         aura: 2500,
         preco: 100000000,
+    },
+    {
+        nome: "Skin Mega Forte",
+        img: "assets/Macaco_Musculoso_em_Poses_Confiante-removebg-preview.png",
+        aura: 1000,
+        preco: 1200000000,
     }
 ]
 
@@ -90,12 +96,15 @@ for (let i in lojaList) {
                 auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
                 monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
                 localStorage.setItem("cash", cash);
+                localStorage.setItem("aura", aura);
 
             } else if (i == 0 && cash >= 10000000) {
                 cash -= 10000000
                 aura += 750
                 monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
                 localStorage.setItem("cash", cash);
+                localStorage.setItem("aura", aura);
+                auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
 
             } else if (i == 2 && cash >= 100000000) {
                 cash -= 100000000
@@ -104,9 +113,10 @@ for (let i in lojaList) {
                 BarraVidaProta += 250
                 localStorage.setItem("quantidadeDano", quantidadeDano);
                 monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
+                auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
                 localStorage.setItem("cash", cash);
                 localStorage.setItem("BarraVidaProta", BarraVidaProta);
-
+                localStorage.setItem("aura", aura);
             }
 
         });
@@ -262,6 +272,7 @@ const upgradesList = [
 
 const audioClickUpgrade = new Audio("assets/audio/click upgrade.m4a")
 const audioClickNegado = new Audio("assets/audio/ClickNegado.m4a")
+let precos = document.querySelector("preco")
 
 
 const upgrades = document.querySelector(".upgrades")
@@ -272,7 +283,7 @@ for (let i = 0; i < upgradesList.length; i++) {
     let itemUpgrade = `
         <p class="tituloupgrade">${upgrade.nome}</p>
         <p>${upgrade.descricao}</p>
-        <p id="preco"><span class="cost">Custa:</span> ${upgrade.preco}</p>`;
+        <p class="preco"><span class="cost">Custa:</span> ${upgrade.preco}</p>`;
 
     const novaDiv = document.createElement("div");
     novaDiv.classList.add("upgrade");
@@ -312,34 +323,50 @@ const funcaoUpgrade3 = function (valorUpgrade, qtd) {
 }
 const funcaoUpgrade1 = function (valorUpgrade, aumento) {
     
+    
     if (cash < 100) {
         monkeybutton.src = "/assets/monkey-removebg-preview.png"
 
     }
     if (cash >= valorUpgrade) {
-        audioClickUpgrade.play()
-        contadordeespecial1 += aumento
-        cash -= valorUpgrade
-        monkeycoins.innerHTML = `Monkey Coins: ${cash}`
-
-    } else if (cash < valorUpgrade) {
+        audioClickUpgrade.play();
+        contadordeespecial1 += aumento;
+        cash -= valorUpgrade;
+        monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
+        
+        
+        
+    } else{
         audioClickNegado.play()
         
-
+        
     }
 }
 
-for (let i in upgradesList) {
+for (let i = 0; i < upgradesList.length; i++) {
     const upgrade = upgradesList[i];
     const upgradeElem = document.getElementById(`upgrade${parseInt(i) + 1}`);
-
+    
     if (upgradeElem) {
         upgradeElem.addEventListener("click", () => {
+            let upgradeAtual = upgradesList[i]
+            
+            
             if (upgrade.tipo.toLowerCase() === "manual") {
+                
                 funcaoUpgrade1(upgrade.preco, upgrade.aumento);
             } else if (upgrade.tipo.toLowerCase() === "automatico") {
+                
                 funcaoUpgrade3(upgrade.preco, upgrade.aumento);
             }
+            if(cash >= upgradeAtual.preco){
+                upgrade.preco *= 2;
+
+            }
+
+
+            const precoElem = upgradeElem.querySelector(".preco");
+            precoElem.innerHTML = `<span class="cost">Custa:</span> ${upgrade.preco}`;
         });
     }
 }
@@ -460,9 +487,6 @@ monkeybutton.addEventListener("click", () => {
     if (cash < 50) {
         monkeybutton.src = "assets/monkey-removebg-preview.png"
 
-        imgtimeout = setTimeout(() => {
-            monkeybutton.src = "assets/macaco_triste-removebg-preview.png"
-        }, 1000)
     }
 
     if (cash >= 50000) {
