@@ -85,7 +85,8 @@ main {
     
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 400px;
+    padding: 10px;
     background: #b57300;
     background: linear-gradient(133deg, rgba(181, 115, 0, 1) 0%, rgba(255, 166, 0, 1) 51%, rgba(255, 164, 36, 1) 84%);
     border: solid 2px rgb(0, 0, 0);
@@ -96,6 +97,36 @@ main {
     
 
 }
+
+
+.skinItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    
+  
+}
+
+.imgSkin{
+    width: 200px;
+}
+
+.itensSkin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 200px;
+    background-color: rgb(206, 192, 0);
+    margin: 20px;
+    border-radius: 50px;
+}
+
+
+
+
 
 .containerCashMonkey{
     display: flex;
@@ -114,6 +145,13 @@ main {
     transform: translate(-50%, -50%);
 }
 
+.descricaoUpgrade{
+    font-size: 15px;
+}
+
+.tituloupgrade{
+    font-size: 25px
+}
 
 
 
@@ -283,6 +321,27 @@ main {
     align-items: center;
 }
 
+.SkinDiv{
+    position: absolute;
+    z-index: 11;
+    top: 70%;
+    left: 85%;
+    
+}
+.skin{
+    width: 70%;
+    cursor: pointer;
+}
+
+
+#modalSkin{
+    display: None;
+}
+
+
+
+
+
 .modalLoginBody {
     display: flex;
     align-items: center;
@@ -335,6 +394,19 @@ main {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+#modalBody4 {
+
+    background-image: url(../assets/backgroundmodal.png);
+    position: relative;
+    width: 50%;
+    height: 90%;
+    overflow-y: auto;
+    display: block;
+    border: solid 2px black;
+    border-radius: 5px;
+
 }
 
 #Resultado {
@@ -436,7 +508,7 @@ main {
 
 .upgrade, .divLojaItem {
   flex: 1 1 150px;
-  max-width: 200px; 
+  max-width: 300px; 
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 8px;

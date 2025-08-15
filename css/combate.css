@@ -1,197 +1,129 @@
+/* Reset básico */
 * {
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: "Roboto", sans-serif;
-    overflow: hidden;
-
+    overflow-x: hidden;
+    background-color: #fff;
 }
 
-.vidas{
+/* Vidas */
+.vidas {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2vh;
 }
 
 .vidaPersonagens {
-    gap: 50px;
     display: flex;
-    width: 100px;
-    justify-content: center;
-    align-items: center;
+    gap: 2vw;
     
-    margin-top: 60px;
-    
+}
+
+#VidaProta, #VidaOponente {
+    border: 2px solid black;
+    padding: 0.5em 2em;
+    width: 400px;
+    background-color: rgb(0, 202, 0);
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    font-size: 1.2em;
+}
+
+/* Vitorias */
+.vitorias {
     position: fixed;
-    
-}
-
-#VidaOponente{
-    border: 2px solid black;
-    padding-left: 200px;
-    padding-right: 200px;
-    background-color: rgb(0, 202, 0);
-    border-bottom-left-radius: 50px;
-    border-top-right-radius: 50px;
-}
-
-#VidaProta {
-    border: 2px solid black;
-    padding-left: 200px;
-    padding-right: 200px;
-    background-color: rgb(0, 202, 0);
-    border-bottom-left-radius: 50px;
-    border-top-right-radius: 50px;
-    
-}
-
-.combateDiv {
-    top: 50%;
-    position: absolute;
+    top: 5%;
     left: 2%;
-    cursor: pointer;
-    z-index: 10;
-
-}
-
-
-.combate {
-    width: 10vw;
-    border-radius: 100px;
-    
-}
-
-
-.protapunch {
-    min-width: 50vh;
-}
-
-
-.containerRingue {
-    position: fixed;
-    bottom: 10%;
-    left: 0;
-    width: 100%;
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
-.oponente {
-    
-    transform: scaleX(-1);
-    height: 80vh;
-    
-    
-    
-}
-
-.oponenteSoco{
-    width: 55vh!important;
-}
-
-
-
-#vitorias{
-    position: fixed;
-    font-family: "Roboto", sans-serif;
-    padding: 15px;
-    margin-left: 40px;
-    color: rgb(0, 0, 0);
-    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103);
-}
-
-.vitorias{
-    position: fixed;
-    top: 90%;
-    display: flex;
-}
-
-
-#trofeuIcon{
-    width: 50px;
-}
-
-#QTDVitorias{
-    color: white;
-}
-
-
-
-
-
-
-.lutadores {
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    
+    gap: 0.5em;
 }
 
-.lutador{
-    padding-top: 60%;
-    width: 40vh;
-    max-width: 100vh;
-    height: 60vh; 
-     
-    
+#trofeuIcon {
+    width: 40px;
+    height: auto;
 }
 
+/* Escolha de personagens */
 .escolhaP {
     display: flex;
-    gap: 50px;
+    gap: 2vw;
     list-style: none;
     position: fixed;
-    transform: translate(-50%, -50%);
     left: 50%;
-    top: 90%;
+    bottom: 2%;
+    transform: translateX(-50%);
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .bottaoEscolhaP {
-    width: 10vh;
-    height: 10vh;
-    border-radius: 30px;
+    width: 12vw;
+    max-width: 80px;
+    aspect-ratio: 1;
+    border-radius: 50%;
     background-color: yellow;
     border: 2px solid black;
     cursor: pointer;
     transition: all 0.2s;
+    font-size: 0.8em;
 }
 
 .bottaoEscolhaP:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     background-color: rgb(151, 151, 0);
 }
 
+/* Ringue */
 .ringuedeluta {
-    width: 120vw;
-    height: 70vw;
+    width: 100%;
+    height: auto;
     position: absolute;
     z-index: -1;
     top: 0;
 }
 
+/* Lutadores */
+.lutadores {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 70vh;
+    gap: 5vw;
+    position: relative;
+}
 
+.lutador {
+    width: 25vw;
+    max-width: 150px;
+    height: auto;
+}
 
+.oponente {
+    transform: scaleX(-1);
+}
 
+/* Botão combate */
+.combateDiv {
+    position: fixed;
+    left: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+}
 
+.combate {
+    width: 12vw;
+    max-width: 60px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Modais */
 .modal {
     display: none;
     position: fixed;
@@ -200,54 +132,77 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0,0,0,0.6);
+    
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-    background-image: url("../assets/imgs/background.png");
-    border: solid 2px black;
-    margin: 15% auto;
-    padding: 30px;
+    background-color: white;
+    padding: 2em;
     border-radius: 10px;
-    width: 300px;
     text-align: center;
-}
-
-#fecharModal {
-    margin-top: 15px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
+    width: 90%;
+    top: 40%;
+    left: 35%;
+    max-width: 350px;
+    position: relative;
 }
 
 .fechar {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 30px;
-  cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+/* Media celular */
+@media (max-width: 768px) {
+    .vidaPersonagens h2 {
+        padding: 0.3em 1em;
+        font-size: 1em;
+    }
+
+    .lutador {
+        width: 35vw;
+        max-width: 120px;
+    }
+
+    .bottaoEscolhaP {
+        width: 18vw;
+        max-width: 60px;
+    }
+
+    .vitorias {
+        gap: 0.3em;
+    }
+
+    .combate {
+        width: 15vw;
+        max-width: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lutador {
+        width: 40vw;
+        max-width: 100px;
+    }
+
+    .bottaoEscolhaP {
+        width: 20vw;
+        max-width: 50px;
+        font-size: 0.7em;
+    }
+
+    .vidaPersonagens {
+        gap: 1vw;
+    }
+
+    #VidaProta, #VidaOponente {
+        padding: 0.3em 1em;
+        font-size: 0.9em;
+    }
 }

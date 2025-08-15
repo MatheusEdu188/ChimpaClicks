@@ -1,6 +1,11 @@
 const prota = document.querySelector(".prota")
 const oponente = document.querySelector(".oponente")
 
+
+let upgradeForça = Number(localStorage.getItem("upgradeForça")) || 1;
+let upgradeCash = Number(localStorage.getItem("upgradeCash")) || 1;
+let upgradeAura = Number(localStorage.getItem("upgradeAura")) || 1;
+
 let quantidadeDeVitorias = Number(localStorage.getItem("quantidadeDeVitorias")) || 0;
 const vitorias = document.getElementById("win")
 vitorias.textContent = quantidadeDeVitorias 
@@ -132,7 +137,7 @@ prota.addEventListener("click", () => {
         cooldownPunch = false;
     }
 
-    BarraVidaOponente -= quantidadeDano;
+    BarraVidaOponente -= (quantidadeDano * upgradeForça);
     VidaOponente.innerHTML = BarraVidaOponente;
 
     if (BarraVidaOponente <= 0) {

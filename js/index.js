@@ -1,6 +1,21 @@
+function NumerosEmFormatoDiferente(num) {
+    if (num >= 1e27) return (num / 1e27).toFixed(2) + "O"; 
+    if (num >= 1e24) return (num / 1e24).toFixed(2) + "S"; 
+    if (num >= 1e21) return (num / 1e21).toFixed(2) + "Z"; 
+    if (num >= 1e18) return (num / 1e18).toFixed(2) + "Q"; 
+    if (num >= 1e15) return (num / 1e15).toFixed(2) + "T"; 
+    if (num >= 1e12) return (num / 1e12).toFixed(2) + "B";
+    if (num >= 1e9)  return (num / 1e9).toFixed(2)  + "B";  
+    if (num >= 1e6)  return (num / 1e6).toFixed(2)  + "M"; 
+    if (num >= 1e3)  return (num / 1e3).toFixed(2)  + "K"; 
+    return num;
+}
+
 const monkeybutton = document.querySelector("#monkeyimg")
 const monkeycoins = document.querySelector("#monkeycoins")
 let quantidadeDeVitorias = Number(localStorage.getItem("quantidadeDeVitorias")) || 0;
+
+
 
 let modoespecial1 = false
 let modoespecial2 = false
@@ -8,14 +23,34 @@ let modoespecial3 = false
 
 
 
-let cash = Number(localStorage.getItem("cash")) || 0
+let cash = Number(localStorage.getItem("cash")) || 0;
 monkeycoins.innerHTML = `Monkey Coins: ${cash}`
 let contadordeespecial1 = Number(localStorage.getItem("contadordeespecial1")) || 0
+
 let contadordeespecial2 = 0
 let imgtimeout = null
 let possibilidadeDeCasar = 0
 let BarraVidaProta = Number(localStorage.getItem("BarraVidaProta")) || 10;
 
+
+
+function salvarLocalStorage() {
+    localStorage.setItem("cash", cash);
+    localStorage.setItem("aura", aura);
+    localStorage.setItem("contadordeespecial1", contadordeespecial1)
+    localStorage.setItem("contadordeespecial2", contadordeespecial2)
+    auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
+    monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
+    trofeus.innerHTML = `<span class="spanAuraTrofeu">Trofeus:</span>  ${quantidadeDeVitorias}`
+    localStorage.setItem("monkeybutton", monkeybutton.src)
+
+
+    localStorage.setItem("quantidadeDano", quantidadeDano);
+    localStorage.setItem("quantidadeDeVitorias", quantidadeDeVitorias);
+    localStorage.setItem("BarraVidaProta", BarraVidaProta);
+
+
+}
 
 
 
@@ -27,30 +62,56 @@ const lojaList = [
     {
         nome: "Empresa",
         img: "assets/imgs/icons/empresaicon.png",
-        aura: 100,
+        ganhoCash: 0,
+        ganhoForça: 0,
+        ganhoAura: 750,
         preco: 10000000,
+        tipo: "upgrade",
     },
     {
         nome: "Perfume de Aura",
         img: "assets/imgs/icons/perfumeIcon.png",
-        aura: 500,
+        ganhoAura: 500,
+        ganhoCash: 0,
+        ganhoForça: 0,
         preco: 50000000,
+        tipo: "upgrade",
     },
     {
         nome: "Anabolizante",
         img: "assets/imgs/icons/bomba.png",
         aura: 2500,
+        ganhoAura: 500,
+        ganhoCash: 0,
+        ganhoForça: 1000,
         preco: 100000000,
+        tipo: "upgrade",
     },
     {
         nome: "Skin Mega Forte",
-        img: "assets/Macaco_Musculoso_em_Poses_Confiante-removebg-preview.png",
+        img: "assets/imgs/skins/Macaco_Musculoso_em_Poses_Confiante-removebg-preview.png",
         aura: 1000,
-        preco: 1200000000,
+        tipo: "skin",
+        ganhoCash: 1,
+        ganhoForça: 2,
+        ganhoAura: 1.5,
+        preco: 10000000000,
+    },
+    {
+        nome: "Skin Brurma",
+        img: "assets/imgs/skins/bulma.png",
+        aura: 0,
+        tipo: "skin",
+        ganhoCash: 2,
+        ganhoForça: 1,
+        ganhoAura: 1,
+        preco: 10,
     }
 ]
 
-let aura = 0;
+
+
+let aura = Number(localStorage.getItem("aura")) || 0;
 let quantidadeDano = Number(localStorage.getItem("quantidadeDano")) || 100;
 
 const auras = document.querySelector(".auras")
@@ -62,6 +123,22 @@ auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`
 
 
 
+let upgradeForça = Number(localStorage.getItem("upgradeForça")) || 1;
+let upgradeCash = Number(localStorage.getItem("upgradeCash")) || 1;
+let upgradeAura = Number(localStorage.getItem("upgradeAura")) || 1;
+
+
+
+
+
+let srcSkinSave = localStorage.getItem("monkeybutton");
+if (srcSkinSave) {
+    monkeybutton.src = srcSkinSave;
+}
+
+localStorage.setItem("monkeybutton", monkeybutton.src);
+
+
 
 
 
@@ -70,7 +147,7 @@ let contadorItem = 0;
 
 for (let item of lojaList) {
     let itemLoja = `<img class="itemLoja" src="${item.img}" alt="">
-    <p class="precoLoja">${item.preco}</p>`
+    <p class="precoLoja">${NumerosEmFormatoDiferente(item.preco)}</p>`
 
     contadorItem++
 
@@ -83,40 +160,68 @@ for (let item of lojaList) {
 }
 
 
-for (let i in lojaList) {
-    const upgradeLoja = lojaList[i];
-    const elementoLoja = document.getElementById(`Item${parseInt(i) + 1}`);
 
-    if (elementoLoja) {
-        elementoLoja.addEventListener("click", () => {
 
-            if (i == 1 && cash >= 50000000) {
-                cash -= 50000000
-                aura += 500;
-                auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
-                monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
-                localStorage.setItem("cash", cash);
-                localStorage.setItem("aura", aura);
 
-            } else if (i == 0 && cash >= 10000000) {
-                cash -= 10000000
-                aura += 750
-                monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
-                localStorage.setItem("cash", cash);
-                localStorage.setItem("aura", aura);
-                auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
+function upgradeSkin(ganhoForça, ganhoAura, ganhoCash, valorLoja, img) {
+    if (cash >= valorLoja) {
+        upgradeForça = ganhoForça
+        upgradeCash = ganhoCash
+        cash -= valorLoja;
+        aura += ganhoAura
+        
 
-            } else if (i == 2 && cash >= 100000000) {
-                cash -= 100000000
-                aura += 10000
-                quantidadeDano += 200
-                BarraVidaProta += 250
-                localStorage.setItem("quantidadeDano", quantidadeDano);
-                monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
-                auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
-                localStorage.setItem("cash", cash);
-                localStorage.setItem("BarraVidaProta", BarraVidaProta);
-                localStorage.setItem("aura", aura);
+        monkeybutton.src = img;
+        localStorage.setItem("monkeybutton", img);
+        salvarLocalStorage();
+
+    } else {
+        audioClickNegado.play()
+
+
+    }
+}
+
+function upgradeUp(ganhoForça, ganhoAura, ganhoCash, valorLoja) {
+    if (cash >= valorLoja) {
+        
+        upgradeCash += ganhoCash
+        quantidadeDano += ganhoForça
+        cash -= valorLoja
+        aura += ganhoAura
+        salvarLocalStorage()
+    } else {
+        audioClickNegado.play()
+
+
+    }
+}
+
+
+
+
+
+
+for (let i = 0; i < lojaList.length; i++) {
+    const item = lojaList[i];
+    const LojaElem = document.getElementById(`Item${parseInt(i) + 1}`);
+
+    if (item) {
+        LojaElem.addEventListener("click", () => {
+
+
+
+            if (item.tipo.toLowerCase() === "upgrade") {
+
+                upgradeUp(item.ganhoForça, item.ganhoAura, item.ganhoCash, item.preco);
+                console.log(aura);
+                console.log(quantidadeDano);
+                
+                
+
+            } else if (item.tipo.toLowerCase() === "skin") {
+
+                upgradeSkin(item.ganhoForça, item.ganhoAura, item.ganhoCash, item.preco, item.img);
             }
 
         });
@@ -128,11 +233,19 @@ for (let i in lojaList) {
 
 
 
+
+
+
+
+
+
+
+
 const upgradesList = [
     {
         nome: "+1 Por Click",
         descricao: "Adiciona mais 1 coin por click",
-        preco: 50,
+        preco: 0,
         aumento: 1,
         tipo: "manual",
     },
@@ -269,7 +382,6 @@ const upgradesList = [
 ]
 
 
-
 const audioClickUpgrade = new Audio("assets/audio/click upgrade.m4a")
 const audioClickNegado = new Audio("assets/audio/ClickNegado.m4a")
 let precos = document.querySelector("preco")
@@ -281,13 +393,13 @@ const upgrades = document.querySelector(".upgrades")
 for (let i = 0; i < upgradesList.length; i++) {
     let upgrade = upgradesList[i];
     let itemUpgrade = `
-        <p class="tituloupgrade">${upgrade.nome}</p>
-        <p>${upgrade.descricao}</p>
-        <p class="preco"><span class="cost">Custa:</span> ${upgrade.preco}</p>`;
+    <p class="tituloupgrade">${upgrade.nome}</p>
+    <p class="descricaoUpgrade">${upgrade.descricao}</p>
+    <p class="preco"><span class="cost">Custa:</span></p>`;
 
     const novaDiv = document.createElement("div");
     novaDiv.classList.add("upgrade");
-    novaDiv.id = `upgrade${i + 1}`; // define o id!
+    novaDiv.id = `upgrade${i + 1}`; 
     novaDiv.innerHTML = itemUpgrade;
     upgrades.appendChild(novaDiv);
 }
@@ -322,54 +434,59 @@ const funcaoUpgrade3 = function (valorUpgrade, qtd) {
     }
 }
 const funcaoUpgrade1 = function (valorUpgrade, aumento) {
-    
-    
-    if (cash < 100) {
-        monkeybutton.src = "/assets/monkey-removebg-preview.png"
 
-    }
+
     if (cash >= valorUpgrade) {
         audioClickUpgrade.play();
         contadordeespecial1 += aumento;
         cash -= valorUpgrade;
         monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
-        
-        
-        
-    } else{
+
+
+
+    } else {
         audioClickNegado.play()
-        
-        
+
+
     }
 }
 
 for (let i = 0; i < upgradesList.length; i++) {
     const upgrade = upgradesList[i];
-    const upgradeElem = document.getElementById(`upgrade${parseInt(i) + 1}`);
+    const upgradeElem = document.getElementById(`upgrade${i + 1}`);
+
     
+    let precoSalvo = Number(localStorage.getItem(`upgradePreco${i}`)) || upgrade.preco;
+    upgrade.preco = precoSalvo;
+
     if (upgradeElem) {
+        const precoElem = upgradeElem.querySelector(".preco");
+        precoElem.innerHTML = `<span class="cost">Custa:</span>${NumerosEmFormatoDiferente(upgrade.preco)}`;
+
         upgradeElem.addEventListener("click", () => {
-            let upgradeAtual = upgradesList[i]
-            
-            
+
+            if (cash < upgrade.preco) {
+                audioClickNegado.play();
+                return;
+            }
+
             if (upgrade.tipo.toLowerCase() === "manual") {
-                
                 funcaoUpgrade1(upgrade.preco, upgrade.aumento);
             } else if (upgrade.tipo.toLowerCase() === "automatico") {
-                
                 funcaoUpgrade3(upgrade.preco, upgrade.aumento);
             }
-            if(cash >= upgradeAtual.preco){
-                upgrade.preco *= 2;
 
-            }
+            upgrade.preco *= 2;
 
 
-            const precoElem = upgradeElem.querySelector(".preco");
+            localStorage.setItem(`upgradePreco${i}`, upgrade.preco);
+
+
             precoElem.innerHTML = `<span class="cost">Custa:</span> ${upgrade.preco}`;
         });
     }
 }
+
 
 
 
@@ -381,41 +498,79 @@ let intervaloAtivo;
 
 
 
-// const upgrade8 = document.getElementById("upgrade8").addEventListener("click", () => {
-//     funcaoUpgrade1(1000000, 4000)
-// })
+
+const skins = [
+    {
+        nome: "Macaco Simples",
+        img: "assets/monkey-removebg-preview.png",
+        cashNecessario: 50
+    },
+    {
+        nome: "Macaco Estiloso",
+        img: "assets/Macaco_com_Estilo_e_Confiança-removebg-preview.png",
+        cashNecessario: 10000
+    },
+    {
+        nome: "Macaco Muito Rico",
+        img: "assets/Macaco Muito Rico.png",
+        cashNecessario: 50000
+    },
+    {
+        nome: "Macaco 100Mil",
+        img: "assets/macaco de 100mil.png",
+        cashNecessario: 100000
+    },
+    {
+        nome: "Macaco Extremamente Rico",
+        img: "assets/Macaco Extremamente Rico.png",
+        cashNecessario: 100000000
+    },
+    {
+        nome: "O Homem de 1 Bilhão",
+        img: "assets/Macaco 1 bilhão.png",
+        cashNecessario: 1000000000
+    },
+    {
+        nome: "Macaco Infinitamente Rico",
+        img: "assets/macaco infinitamente rico(1).png",
+        cashNecessario: 100000000000000
+    },
+    {
+        nome: "Macaco Interuniversal",
+        img: "assets/Macaco Interuniversal.png",
+        cashNecessario: 1000000000000000000
+    }
+]
 
 
-// const upgrade7 = document.getElementById("upgrade7").addEventListener("click", () => {
-//     funcaoUpgrade1(100000, 1000)
-// })
 
+const modalBody = document.querySelector(".skinItem");
+let contadorItemSkin = 0;
 
+for (let item of skins) {
+    contadorItemSkin++;
 
-// const upgrade6 = document.getElementById("upgrade6").addEventListener("click", () => {
-//     funcaoUpgrade1(10000, 50)
-// })
+    let itemSkin = `
+        <img class="imgSkin" src="${item.img}" alt="">
+        <p class="precoLoja">${NumerosEmFormatoDiferente(item.cashNecessario)}</p>
+    `;
 
-// const upgrade5 = document.getElementById("upgrade5").addEventListener("click", () => {
-//     funcaoUpgrade1(400, 10)
-// })
+    const novaDiv = document.createElement("div");
+    novaDiv.classList.add("itensSkin");
+    novaDiv.id = `Item${contadorItem}`;
+    novaDiv.innerHTML = itemSkin;
+    modalBody.appendChild(novaDiv);
 
-// const upgrade4 = document.getElementById("upgrade4").addEventListener("click", () => {
-//     funcaoUpgrade3(950, 2)
-// })
-
-// const upgrade3 = document.getElementById("upgrade3").addEventListener("click", () => {
-//     funcaoUpgrade3(500, 1)
-// })
-
-
-// const upgrade2 = document.getElementById("upgrade2").addEventListener("click", () => {
-//     funcaoUpgrade1(150, 4)
-// })
-
-// const upgrade1 = document.getElementById("upgrade1").addEventListener("click", () => {
-//     funcaoUpgrade1(50, 1)
-// })
+    
+    novaDiv.addEventListener("click", () => {
+        if (cash >= item.cashNecessario) {
+            monkeybutton.src = item.img;
+            localStorage.setItem("monkeybutton", item.img); 
+        } else {
+            audioClickNegado.play(); 
+        }
+    });
+}
 
 
 
@@ -458,63 +613,17 @@ monkeybutton.addEventListener("click", () => {
     if (cash >= 2000000000) {
         possibilidadeDeCasar += 0.0000010
     }
+    monkeycoins.innerHTML = `Monkey Coins: ${NumerosEmFormatoDiferente(cash)}`
 
 
 
 
 
-    cash += 1 + contadordeespecial1
+    cash += 1 + (contadordeespecial1 * upgradeCash)
     localStorage.setItem("contadordeespecial1", contadordeespecial1);
 
 
 
-
-
-
-
-    // if(upgrade1){
-    //     cash+=contadordeespecial
-
-    // }
-    // if(upgrade2){
-    //     cash+=contadordeespecial
-    // }
-
-    monkeycoins.innerHTML = `Monkey Coins: ${cash}`
-    if (imgtimeout) {
-        clearTimeout(imgtimeout)
-    }
-    if (cash < 50) {
-        monkeybutton.src = "assets/monkey-removebg-preview.png"
-
-    }
-
-    if (cash >= 50000) {
-        monkeybutton.src = "assets/Macaco_com_Estilo_e_Confiança-removebg-preview.png"
-    }
-
-    if (cash >= 200000) {
-        monkeybutton.src = "assets/Macaco Muito Rico.png"
-    }
-
-    if (cash >= 100000) {
-        monkeybutton.src = "assets/macaco de 100mil.png"
-    }
-    if (cash >= 500000000) {
-        monkeybutton.src = "assets/Macaco Extremamente Rico.png"
-    }
-    if (cash >= 1000000000) {
-        monkeybutton.src = "assets/Macaco 1 bilhão.png"
-    }
-    if (cash >= 1000000000000000) {
-        monkeybutton.src = "assets/macaco infinitamente rico(1).png"
-
-    }
-    if (cash >= 10000000000000000) {
-        monkeybutton.src = "assets/Macaco Interuniversal.png"
-
-
-    }
     localStorage.setItem("cash", cash)
 })
 
@@ -533,21 +642,46 @@ const modalCasar = document.getElementById("modalCasar")
 const fecharmodalCasar = document.querySelector(".fecharmodalCasar")
 const Resultado = document.getElementById("Resultado")
 const msgResultado = document.getElementById("msgResultado")
+const modalSkin = document.getElementById("modalSkin")
+const SkinDiv = document.querySelector(".SkinDiv")
+const fecharmodalSkin = document.querySelector(".fecharmodalSkin")
 
 
 
 
 let modalLoja = false;
 Upgrade.addEventListener("click", () => {
-    if(modalLoja == false){
+    if (modalLoja == false) {
         modalUpgrade.style.display = "flex"
         modalLoja = true
-    } else if(modalLoja == true){
+    } else if (modalLoja == true) {
         modalUpgrade.style.display = "none"
         modalLoja = false
 
     }
 })
+
+
+let modalSkin1 = false;
+
+SkinDiv.addEventListener("click", () => {
+    if (modalSkin1 == false) {
+        modalSkin.style.display = "flex"
+        modalSkin1 = true
+    } else if (modalSkin1 == true) {
+        modalSkin.style.display = "none"
+        modalSkin1 = false
+
+    }
+})
+
+fecharmodalSkin.addEventListener("click", () => {
+    modalSkin.style.display = "none"
+    modalSkin1 = false
+})
+
+
+
 
 const somDerrota = new Audio("assets/audio/SomDerrota.m4a")
 const somVitoria = new Audio("assets/audio/pt1.oga")
@@ -557,20 +691,21 @@ pedirCasamento.addEventListener("click", () => {
     modalCasar.style.display = "flex"
     if (cash >= 180000000000000000 && possibilidadeDeCasar >= 100 && quantidadeDeVitorias >= 100000) {
         Resultado.innerHTML = "Ela Aceitou!"
-        msgResultado.innerHTML = "Você levará uma vida deprimente a partir de agora. Ela gastará toda sua fortuna e logo logo sua vida se tornará miseravel novamente. Mas oq importa é que agora você tem ela."
+        msgResultado.innerHTML = "Você levará uma vida deprimente a partir de agora. Ela gastará toda sua fortuna e logo logo sua vida se tornará miseravel novamente. Mas oq importa é que agora você tem ela. De qualquer forma... Parabéns!! Seu Objetivo foi concluido."
 
     } else {
         Resultado.innerHTML = "Você foi Rejeitado!"
         msgResultado.innerHTML = "Ela te rejeitou e roubou toda sua fortuna"
         cash = 0
         contadordeespecial1 = 0
-        contadordeespecial2 = 0
+        aura = 0
         possibilidadeDeCasar = 0
         quantidadeDeVitorias = 1
         monkeycoins.textContent = cash
-        trofeus.textContent = `Trofeus: 0`
-        auras.textContent = `Aura: 0`
+        trofeus.textContent = `<h2 class="trofeu"></h2>`
+        auras.textContent = `<h2 class="aura">h2>`
         somDerrota.play()
+        salvarLocalStorage()
 
 
     }
@@ -619,17 +754,42 @@ const modalLogin = document.querySelector(".modallogin")
 
 
 
+let jaColocouNome = localStorage.getItem("jacolocounome");
+
 finalizarLogin.addEventListener("click", () => {
+
+    jaColocouNome = true
+    localStorage.setItem("jacolocounome", jaColocouNome);
+
+
     modalLogin.style.display = "none"
-    let nome1 = valorInput1.value
-    let nome2 = valorInput2.value
+    localStorage.setItem("nome1", valorInput1.value);
+    localStorage.setItem("nome2", valorInput2.value);
+
+
+    let nome1 = localStorage.getItem("nome1");
+    let nome2 = localStorage.getItem("nome2");
+
     if (nome2 == "Gabriel") {
         Name.innerHTML = "Gabiru"
+
     } else {
         Name.innerHTML = `${nome1}`
     }
 
 })
+
+if (jaColocouNome == "true") {
+    modalLogin.style.display = "none"
+    let nome1 = localStorage.getItem("nome1");
+    let nome2 = localStorage.getItem("nome2");
+
+    if (nome2 === "Gabriel") {
+        Name.innerHTML = "Gabiru";
+    } else {
+        Name.innerHTML = nome1;
+    }
+}
 
 
 
