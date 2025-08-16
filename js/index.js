@@ -105,7 +105,7 @@ const lojaList = [
         ganhoCash: 2,
         ganhoForça: 1,
         ganhoAura: 1,
-        preco: 10,
+        preco: 5000000000000,
     }
 ]
 
