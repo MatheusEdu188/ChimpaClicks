@@ -85,7 +85,7 @@ main {
     
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 350px;
     padding: 10px;
     background: #b57300;
     background: linear-gradient(133deg, rgba(181, 115, 0, 1) 0%, rgba(255, 166, 0, 1) 51%, rgba(255, 164, 36, 1) 84%);
@@ -147,6 +147,17 @@ main {
 
 .descricaoUpgrade{
     font-size: 15px;
+    font-weight: 10;
+    margin-top: 10px;
+    color: white;
+}
+
+.preco{
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 10;
+    color: rgb(0, 31, 0);
+
 }
 
 .tituloupgrade{
@@ -200,6 +211,21 @@ main {
     font-weight: 800;
 }
 
+
+#textoPedirCasamento{
+    font-size: 12px;
+    display: flex;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.descricaoItem{
+    font-size: 8px;
+    font-weight: 100;
+    display: flex;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
 .upgrade {
     border: solid 1px black;
     background-color: rgb(255, 123, 0);

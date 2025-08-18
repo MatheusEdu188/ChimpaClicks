@@ -29,50 +29,57 @@ const listadeoponentes = [
     {
         nome: "Marugori",
         vida: 1000,
-        srcPose: "assets/imgs/Lutas/Macaco forte em pose de luta.png",
-        srcDano: "assets/imgs/Lutas/macaco forte levando soco.png",
+        srcPose: "assets/imgs/Lutas/oponente1pose.png",
+        srcDano: "assets/imgs/Lutas/oponente1pose.png",
+        ambiente: "assets/imgs/ambiente1.png",
         Id: 1,
         dano: 200,
         quantidadeTrofeus: 1,
-        srcSoco: "assets/imgs/Lutas/Macaco Forte Dando Soco.png"
+        srcSoco: "assets/imgs/Lutas/oponente1ataque.jpg"
     },
     {
         nome: "Chico Monkey",
         vida: 50000,
-        srcPose: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
-        srcDano: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
+        srcPose: "assets/imgs/Lutas/oponente2pose.png",
+        srcDano: "assets/imgs/Lutas/oponente2pose.png",
+        ambiente: "assets/imgs/ambiente2.png",
         Id: 2,
         dano: 50000,
-        quantidadeTrofeus: 500,
-        srcSoco: "assets/imgs/Lutas/chico monkey dando soco (2).png"
+        quantidadeTrofeus: 5000,
+        srcSoco: "assets/imgs/Lutas/oponente2soco.png"
     },
     {
-        nome: "Chico Monkey",
+        nome: "",
         vida: 5000000,
-        srcPose: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
-        srcDano: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
-        Id: 2,
+        srcPose: "assets/imgs/Lutas/oponente3pose.png",
+        srcDano: "assets/imgs/Lutas/oponente3pose.png",
+        ambiente: "assets/imgs/ambiente3.png",
+        Id: 3,
         dano: 500000,
         quantidadeTrofeus: 5000,
-        srcSoco: "assets/imgs/Lutas/chico monkey dando soco (2).png"
+        srcSoco: "assets/imgs/Lutas/oponente3soco.png"
     },
     {
         nome: "Chico Monkey",
         vida: 1000000000000,
-        srcPose: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
-        srcDano: "assets/imgs/Lutas/chico...Quer dizer...Macaco em pode de luta.png",
-        Id: 2,
+        srcPose: "assets/imgs/Lutas/oponente4pose.png",
+        srcDano: "assets/imgs/Lutas/oponente4pose.png",
+        ambiente: "assets/imgs/ambiente4.png",
+        Id: 4,
         dano: 1000000000,
         quantidadeTrofeus: 10000,
-        srcSoco: "assets/imgs/Lutas/chico monkey dando soco (2).png"
+        srcSoco: "assets/imgs/Lutas/oponente4Soco.png"
     }
 ]
+
+
 
 let id;
 let oponenteSelecionado = listadeoponentes[0];
 let BarraVidaOponente = oponenteSelecionado.vida;
 VidaOponente.innerHTML = BarraVidaOponente;
 oponente.src = oponenteSelecionado.srcPose;
+document.body.style.backgroundImage = `url("${oponenteSelecionado.ambiente}")`
 
 bottaoEscolhaPersoangens.forEach(botao => {
     botao.addEventListener("click", () => {
@@ -81,6 +88,7 @@ bottaoEscolhaPersoangens.forEach(botao => {
         BarraVidaOponente = oponenteSelecionado.vida;
         VidaOponente.innerHTML = BarraVidaOponente;
         oponente.src = oponenteSelecionado.srcPose;
+        document.body.style.backgroundImage = `url("${oponenteSelecionado.ambiente}")`
     });
 });
 
@@ -95,7 +103,7 @@ const fecharModalDerrota = document.getElementById("fecharModalDerrota");
 const botaoTentarNovamente = document.getElementById("botaoTentarNovamente");
 const audioDerrota = new Audio("assets/audio/SomDerrota.m4a");
 const modalVitoria = document.getElementById("modalVitoria");
-const fecharModal = document.getElementById("fecharModal");
+
 
 prota.addEventListener("click", () => {
     somSoco.currentTime = 0;
@@ -105,14 +113,14 @@ prota.addEventListener("click", () => {
 
     cooldownPunch = true;
 
-    prota.src = "assets/imgs/Lutas/punchMonkey1.png";
+    prota.src = "assets/imgs/Lutas/protaAtq.png";
     oponente.src = oponenteSelecionado.srcDano;
     prota.classList.add("protapunch");
     clearTimeout(punchTimeOut);
     contadorSoco++;
 
     punchTimeOut = setTimeout(() => {
-        prota.src = "assets/imgs/Lutas/MonkeyPoseFight.png";
+        prota.src = "assets/imgs/Lutas/protaPose.png";
         prota.classList.remove("protapunch");
         oponente.src = oponenteSelecionado.srcPose;
     }, 500);
@@ -120,16 +128,17 @@ prota.addEventListener("click", () => {
     if (contadorSoco >= 3) {
         BarraVidaProta -= oponenteSelecionado.dano;
         somSocoMarugori.play();
+        oponente.classList.add("oponenteSoco")
 
         setTimeout(() => {
             cooldownPunch = false;
             contadorSoco = 0;
             oponente.classList.remove("oponenteSoco");
-        }, 500);
+        }, 1000);
 
         oponente.src = oponenteSelecionado.srcSoco;
         prota.classList.remove("protapunch");
-        prota.src = "assets/imgs/Lutas/prota levando um soco.png";
+        prota.src = "assets/imgs/Lutas/protaPose.png";
 
         oponente.classList.add("oponenteSoco");
         VidaProta.innerHTML = BarraVidaProta;
@@ -153,9 +162,7 @@ prota.addEventListener("click", () => {
     }
 });
 
-fecharModalDerrota.addEventListener("click", () => {
-    modalDerrota.style.display = "none";
-});
+
 
 botaoTentarNovamente.addEventListener("click", () => {
     modalDerrota.style.display = "none";

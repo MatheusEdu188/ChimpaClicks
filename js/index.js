@@ -39,9 +39,9 @@ function salvarLocalStorage() {
     localStorage.setItem("aura", aura);
     localStorage.setItem("contadordeespecial1", contadordeespecial1)
     localStorage.setItem("contadordeespecial2", contadordeespecial2)
-    auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
-    monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
-    trofeus.innerHTML = `<span class="spanAuraTrofeu">Trofeus:</span>  ${quantidadeDeVitorias}`
+    auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${NumerosEmFormatoDiferente(aura)}`;
+    monkeycoins.innerHTML = `Monkey Coins: ${NumerosEmFormatoDiferente(cash)}`;
+    trofeus.innerHTML = `<span class="spanAuraTrofeu">Trofeus:</span>  ${NumerosEmFormatoDiferente(quantidadeDeVitorias)}`
     localStorage.setItem("monkeybutton", monkeybutton.src)
 
 
@@ -67,15 +67,17 @@ const lojaList = [
         ganhoAura: 750,
         preco: 10000000,
         tipo: "upgrade",
+        descricao:"+750 de Aura"
     },
     {
         nome: "Perfume de Aura",
         img: "assets/imgs/icons/perfumeIcon.png",
-        ganhoAura: 500,
+        ganhoAura: 1000,
         ganhoCash: 0,
         ganhoForça: 0,
         preco: 50000000,
         tipo: "upgrade",
+        descricao: "+1000 de Aura"
     },
     {
         nome: "Anabolizante",
@@ -86,6 +88,7 @@ const lojaList = [
         ganhoForça: 1000,
         preco: 100000000,
         tipo: "upgrade",
+        descricao:"+1000 de Força & 500 Aura"
     },
     {
         nome: "Skin Mega Forte",
@@ -96,16 +99,18 @@ const lojaList = [
         ganhoForça: 2,
         ganhoAura: 1.5,
         preco: 10000000000,
+        descricao: "2X Força "
     },
     {
         nome: "Skin Brurma",
         img: "assets/imgs/skins/bulma.png",
         aura: 0,
         tipo: "skin",
+        descricao: "2X Cash",
         ganhoCash: 2,
         ganhoForça: 1,
         ganhoAura: 1,
-        preco: 5000000000000,
+        preco: 500000000000,
     }
 ]
 
@@ -117,8 +122,8 @@ let quantidadeDano = Number(localStorage.getItem("quantidadeDano")) || 100;
 const auras = document.querySelector(".auras")
 const trofeus = document.querySelector(".trofeus")
 
-trofeus.innerHTML = `<span class="spanAuraTrofeu">Trofeus:</span>  ${quantidadeDeVitorias}`
-auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`
+trofeus.innerHTML = `<span class="spanAuraTrofeu">Trofeus:</span>  ${NumerosEmFormatoDiferente(quantidadeDeVitorias)}`
+auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${NumerosEmFormatoDiferente(aura)}`
 
 
 
@@ -147,7 +152,8 @@ let contadorItem = 0;
 
 for (let item of lojaList) {
     let itemLoja = `<img class="itemLoja" src="${item.img}" alt="">
-    <p class="precoLoja">${NumerosEmFormatoDiferente(item.preco)}</p>`
+    <p class="precoLoja">${NumerosEmFormatoDiferente(item.preco)}</p>
+    <h2 class="descricaoItem">${item.descricao}</h2>`
 
     contadorItem++
 
@@ -245,7 +251,7 @@ const upgradesList = [
     {
         nome: "+1 Por Click",
         descricao: "Adiciona mais 1 coin por click",
-        preco: 0,
+        preco: 50,
         aumento: 1,
         tipo: "manual",
     },
@@ -425,7 +431,7 @@ const funcaoUpgrade3 = function (valorUpgrade, qtd) {
         cash -= valorUpgrade
         intervaloAtivo = setInterval(() => {
             cash += qtd
-            monkeycoins.innerHTML = `Monkey Coins: ${cash}`
+            monkeycoins.innerHTML = `Monkey Coins: ${NumerosEmFormatoDiferente(cash)}`
 
         }, 1000)
     } else if (cash < valorUpgrade) {
@@ -440,7 +446,7 @@ const funcaoUpgrade1 = function (valorUpgrade, aumento) {
         audioClickUpgrade.play();
         contadordeespecial1 += aumento;
         cash -= valorUpgrade;
-        monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
+        monkeycoins.innerHTML = `Monkey Coins: ${NumerosEmFormatoDiferente(cash)}`;
 
 
 
@@ -482,7 +488,7 @@ for (let i = 0; i < upgradesList.length; i++) {
             localStorage.setItem(`upgradePreco${i}`, upgrade.preco);
 
 
-            precoElem.innerHTML = `<span class="cost">Custa:</span> ${upgrade.preco}`;
+            precoElem.innerHTML = `<span class="cost">Custa:</span> ${NumerosEmFormatoDiferente(upgrade.preco)}`;
         });
     }
 }
@@ -553,6 +559,7 @@ for (let item of skins) {
     let itemSkin = `
         <img class="imgSkin" src="${item.img}" alt="">
         <p class="precoLoja">${NumerosEmFormatoDiferente(item.cashNecessario)}</p>
+        
     `;
 
     const novaDiv = document.createElement("div");
@@ -689,7 +696,7 @@ const somVitoria = new Audio("assets/audio/pt1.oga")
 
 pedirCasamento.addEventListener("click", () => {
     modalCasar.style.display = "flex"
-    if (cash >= 180000000000000000 && possibilidadeDeCasar >= 100 && quantidadeDeVitorias >= 100000) {
+    if (cash >= 180000000000000000 && possibilidadeDeCasar >= 100 && quantidadeDeVitorias >= 100000 && aura >= 50000) {
         Resultado.innerHTML = "Ela Aceitou!"
         msgResultado.innerHTML = "Você levará uma vida deprimente a partir de agora. Ela gastará toda sua fortuna e logo logo sua vida se tornará miseravel novamente. Mas oq importa é que agora você tem ela. De qualquer forma... Parabéns!! Seu Objetivo foi concluido."
 

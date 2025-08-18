@@ -7,7 +7,10 @@
 body {
     font-family: "Roboto", sans-serif;
     overflow-x: hidden;
-    background-color: #fff;
+    background-color: #000000;
+    background-image: url("assets/imgs/ambiente1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /* Vidas */
@@ -34,14 +37,16 @@ body {
     font-size: 1.2em;
 }
 
+
 /* Vitorias */
 .vitorias {
     position: fixed;
-    top: 5%;
+    top: 90%;
     left: 2%;
     display: flex;
     align-items: center;
     gap: 0.5em;
+    color: white;
 }
 
 #trofeuIcon {
@@ -60,6 +65,7 @@ body {
     transform: translateX(-50%);
     flex-wrap: wrap;
     justify-content: center;
+    z-index: 100;
 }
 
 .bottaoEscolhaP {
@@ -68,6 +74,7 @@ body {
     aspect-ratio: 1;
     border-radius: 50%;
     background-color: yellow;
+    
     border: 2px solid black;
     cursor: pointer;
     transition: all 0.2s;
@@ -88,28 +95,45 @@ body {
     top: 0;
 }
 
+.oponenteSoco{
+    width: 15%;
+    max-width: 400px;
+}
 /* Lutadores */
 .lutadores {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    height: 70vh;
-    gap: 5vw;
+    align-items: center;
+    gap: 15vw;
     position: relative;
+    margin-right: 15%;
 }
 
 .lutador {
-    width: 25vw;
-    max-width: 150px;
-    height: auto;
+    width: 15%;
+    max-width: 400px;
+    position: fixed;
+    top: 45%;
+    
+    
+    height: 50%;
 }
 
-.oponente {
-    transform: scaleX(-1);
+.protapunch{
+    width: 25%;
+    max-width: 400;
+    z-index: 100;
+    height: 50%;
+    z-index: 1;
+
 }
+
+
 
 /* Botão combate */
-.combateDiv {
+
+
+.homeDiv {
     position: fixed;
     left: 2%;
     top: 50%;
@@ -118,9 +142,14 @@ body {
     z-index: 10;
 }
 
-.combate {
+.home {
     width: 12vw;
     max-width: 60px;
+    transition: all 0.5s ease;
+}
+
+.home:hover{
+    transform: scale(1.2);
 }
 
 /* Modais */
@@ -134,8 +163,7 @@ body {
     height: 100%;
     background-color: rgba(0,0,0,0.6);
     
-    justify-content: center;
-    align-items: center;
+    
 }
 
 .modal-content {
@@ -143,10 +171,11 @@ body {
     padding: 2em;
     border-radius: 10px;
     text-align: center;
-    width: 90%;
     top: 40%;
     left: 35%;
+    width: 90%;
     max-width: 350px;
+    max-height: 25%;
     position: relative;
 }
 
