@@ -35,7 +35,8 @@ const listadeoponentes = [
         Id: 1,
         dano: 200,
         quantidadeTrofeus: 1,
-        srcSoco: "assets/imgs/Lutas/oponente1ataque.jpg"
+        srcSoco: "assets/imgs/Lutas/oponente1ataque.jpg",
+        itemRecebido: 1
     },
     {
         nome: "Chico Monkey",
@@ -46,7 +47,9 @@ const listadeoponentes = [
         Id: 2,
         dano: 50000,
         quantidadeTrofeus: 5000,
-        srcSoco: "assets/imgs/Lutas/oponente2soco.png"
+        srcSoco: "assets/imgs/Lutas/oponente2soco.png",
+        itemRecebido: 2,
+        itemRequerido: 1
     },
     {
         nome: "",
@@ -57,7 +60,9 @@ const listadeoponentes = [
         Id: 3,
         dano: 500000,
         quantidadeTrofeus: 5000,
-        srcSoco: "assets/imgs/Lutas/oponente3soco.png"
+        srcSoco: "assets/imgs/Lutas/oponente3soco.png",
+        itemRecebido: 3,
+        itemRequerido: 2
     },
     {
         nome: "Chico Monkey",
@@ -68,11 +73,13 @@ const listadeoponentes = [
         Id: 4,
         dano: 1000000000,
         quantidadeTrofeus: 10000,
-        srcSoco: "assets/imgs/Lutas/oponente4Soco.png"
+        srcSoco: "assets/imgs/Lutas/oponente4Soco.png",
+        itemRecebido: 4,
+        itemRequerido: 3
     }
 ]
 
-
+let contagemItemAtual = Number(localStorage.getItem("contagemItemAtual")) || 0;
 
 let id;
 let oponenteSelecionado = listadeoponentes[0];
@@ -83,12 +90,20 @@ document.body.style.backgroundImage = `url("${oponenteSelecionado.ambiente}")`
 
 bottaoEscolhaPersoangens.forEach(botao => {
     botao.addEventListener("click", () => {
+        contagemItemAtual = Number(localStorage.getItem("contagemItemAtual"));
         id = botao.dataset.id;
-        oponenteSelecionado = listadeoponentes.find(op => op.Id == id);
-        BarraVidaOponente = oponenteSelecionado.vida;
-        VidaOponente.innerHTML = BarraVidaOponente;
-        oponente.src = oponenteSelecionado.srcPose;
-        document.body.style.backgroundImage = `url("${oponenteSelecionado.ambiente}")`
+        let escolha = listadeoponentes.find(op => op.Id == id);
+        if(contagemItemAtual >= escolha.itemRequerido){
+            oponenteSelecionado = escolha
+            BarraVidaOponente = oponenteSelecionado.vida;
+            VidaOponente.innerHTML = BarraVidaOponente;
+            oponente.src = oponenteSelecionado.srcPose;
+            document.body.style.backgroundImage = `url("${oponenteSelecionado.ambiente}")`
+            
+        } else{
+            return
+        }
+
     });
 });
 
@@ -154,6 +169,11 @@ prota.addEventListener("click", () => {
         quantidadeDeVitorias += oponenteSelecionado.quantidadeTrofeus;
         vitorias.innerHTML = `${quantidadeDeVitorias}`;
         localStorage.setItem("quantidadeDeVitorias", quantidadeDeVitorias);
+        contagemItemAtual = oponenteSelecionado.itemRecebido
+        console.log(contagemItemAtual);
+        localStorage.setItem("contagemItemAtual", contagemItemAtual);
+        
+        
     }
 
     if (BarraVidaProta <= 0) {

@@ -1,55 +1,88 @@
-// let cash = Number(localStorage.getItem("cash")) || 0
-// monkeycoins.innerHTML = `Monkey Coins: ${cash}`
-// let contadordeespecial1 = Number(localStorage.getItem("contadordeespecial1")) || 0
-// let contadordeespecial2 = 0
-// let imgtimeout = null
-// let possibilidadeDeCasar = 0
-// let BarraVidaProta = Number(localStorage.getItem("BarraVidaProta")) || 10;
-
-
-
-
-
-// // upgrades
-
 
 // const lojaList = [
 //     {
 //         nome: "Empresa",
 //         img: "assets/imgs/icons/empresaicon.png",
-//         aura: 100,
+//         ganhoCash: 0,
+//         ganhoForça: 0,
+//         ganhoAura: 750,
 //         preco: 10000000,
+//         tipo: "upgrade",
+//         descricao:"+750 de Aura"
 //     },
 //     {
 //         nome: "Perfume de Aura",
 //         img: "assets/imgs/icons/perfumeIcon.png",
-//         aura: 500,
+//         ganhoAura: 1000,
+//         ganhoCash: 0,
+//         ganhoForça: 0,
 //         preco: 50000000,
+//         tipo: "upgrade",
+//         descricao: "+1000 de Aura"
 //     },
 //     {
 //         nome: "Anabolizante",
 //         img: "assets/imgs/icons/bomba.png",
 //         aura: 2500,
+//         ganhoAura: 500,
+//         ganhoCash: 0,
+//         ganhoForça: 1000,
 //         preco: 100000000,
+//         tipo: "upgrade",
+//         descricao:"+1000 de Força & 500 Aura"
 //     },
 //     {
 //         nome: "Skin Mega Forte",
-//         img: "assets/Macaco_Musculoso_em_Poses_Confiante-removebg-preview.png",
+//         img: "assets/imgs/skins/Macaco_Musculoso_em_Poses_Confiante-removebg-preview.png",
 //         aura: 1000,
-//         preco: 1200000000,
+//         tipo: "skin",
+//         ganhoCash: 1,
+//         ganhoForça: 2,
+//         ganhoAura: 1.5,
+//         preco: 10000000000,
+//         descricao: "2X Força "
+//     },
+//     {
+//         nome: "Skin Brurma",
+//         img: "assets/imgs/skins/bulma.png",
+//         aura: 0,
+//         tipo: "skin",
+//         descricao: "2X Cash",
+//         ganhoCash: 2,
+//         ganhoForça: 1,
+//         ganhoAura: 1,
+//         preco: 500000000000,
 //     }
 // ]
 
-// let aura = 0;
+
+
+// let aura = Number(localStorage.getItem("aura")) || 0;
 // let quantidadeDano = Number(localStorage.getItem("quantidadeDano")) || 100;
 
 // const auras = document.querySelector(".auras")
 // const trofeus = document.querySelector(".trofeus")
 
-// trofeus.innerHTML = `<span class="spanAuraTrofeu">Trofeus:</span>  ${quantidadeDeVitorias}`
-// auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`
+// trofeus.innerHTML = `<span class="spanAuraTrofeu">Trofeus:</span>  ${NumerosEmFormatoDiferente(quantidadeDeVitorias)}`
+// auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${NumerosEmFormatoDiferente(aura)}`
 
 
+
+
+// let upgradeForça = Number(localStorage.getItem("upgradeForça")) || 1;
+// let upgradeCash = Number(localStorage.getItem("upgradeCash")) || 1;
+// let upgradeAura = Number(localStorage.getItem("upgradeAura")) || 1;
+
+
+
+
+
+// let srcSkinSave = localStorage.getItem("monkeybutton");
+// if (srcSkinSave) {
+//     monkeybutton.src = srcSkinSave;
+// }
+
+// localStorage.setItem("monkeybutton", monkeybutton.src);
 
 
 
@@ -60,7 +93,8 @@
 
 // for (let item of lojaList) {
 //     let itemLoja = `<img class="itemLoja" src="${item.img}" alt="">
-//     <p class="precoLoja">${item.preco}</p>`
+//     <p class="precoLoja">${NumerosEmFormatoDiferente(item.preco)}</p>
+//     <h2 class="descricaoItem">${item.descricao}</h2>`
 
 //     contadorItem++
 
@@ -73,40 +107,68 @@
 // }
 
 
-// for (let i in lojaList) {
-//     const upgradeLoja = lojaList[i];
-//     const elementoLoja = document.getElementById(`Item${parseInt(i) + 1}`);
 
-//     if (elementoLoja) {
-//         elementoLoja.addEventListener("click", () => {
 
-//             if (i == 1 && cash >= 50000000) {
-//                 cash -= 50000000
-//                 aura += 500;
-//                 auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
-//                 monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
-//                 localStorage.setItem("cash", cash);
-//                 localStorage.setItem("aura", aura);
 
-//             } else if (i == 0 && cash >= 10000000) {
-//                 cash -= 10000000
-//                 aura += 750
-//                 monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
-//                 localStorage.setItem("cash", cash);
-//                 localStorage.setItem("aura", aura);
-//                 auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
+// function upgradeSkin(ganhoForça, ganhoAura, ganhoCash, valorLoja, img) {
+//     if (cash >= valorLoja) {
+//         upgradeForça = ganhoForça
+//         upgradeCash = ganhoCash
+//         cash -= valorLoja;
+//         aura += ganhoAura
+        
 
-//             } else if (i == 2 && cash >= 100000000) {
-//                 cash -= 100000000
-//                 aura += 10000
-//                 quantidadeDano += 200
-//                 BarraVidaProta += 250
-//                 localStorage.setItem("quantidadeDano", quantidadeDano);
-//                 monkeycoins.innerHTML = `Monkey Coins: ${cash}`;
-//                 auras.innerHTML = `<span class="spanAuraTrofeu">Aura:</span>${aura}`;
-//                 localStorage.setItem("cash", cash);
-//                 localStorage.setItem("BarraVidaProta", BarraVidaProta);
-//                 localStorage.setItem("aura", aura);
+//         monkeybutton.src = img;
+//         localStorage.setItem("monkeybutton", img);
+//         salvarLocalStorage();
+
+//     } else {
+//         audioClickNegado.play()
+
+
+//     }
+// }
+
+// function upgradeUp(ganhoForça, ganhoAura, ganhoCash, valorLoja) {
+//     if (cash >= valorLoja) {
+        
+//         upgradeCash += ganhoCash
+//         quantidadeDano += ganhoForça
+//         cash -= valorLoja
+//         aura += ganhoAura
+//         salvarLocalStorage()
+//     } else {
+//         audioClickNegado.play()
+
+
+//     }
+// }
+
+
+
+
+
+
+// for (let i = 0; i < lojaList.length; i++) {
+//     const item = lojaList[i];
+//     const LojaElem = document.getElementById(`Item${parseInt(i) + 1}`);
+
+//     if (item) {
+//         LojaElem.addEventListener("click", () => {
+
+
+
+//             if (item.tipo.toLowerCase() === "upgrade") {
+
+//                 upgradeUp(item.ganhoForça, item.ganhoAura, item.ganhoCash, item.preco);
+//                 console.log(aura);
+//                 console.log(quantidadeDano);
+                
+                
+
+//             } else if (item.tipo.toLowerCase() === "skin") {
+
+//                 upgradeSkin(item.ganhoForça, item.ganhoAura, item.ganhoCash, item.preco, item.img);
 //             }
 
 //         });

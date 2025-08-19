@@ -11,6 +11,7 @@ function NumerosEmFormatoDiferente(num) {
     return num;
 }
 
+
 const monkeybutton = document.querySelector("#monkeyimg")
 const monkeycoins = document.querySelector("#monkeycoins")
 let quantidadeDeVitorias = Number(localStorage.getItem("quantidadeDeVitorias")) || 0;
@@ -21,6 +22,8 @@ let modoespecial1 = false
 let modoespecial2 = false
 let modoespecial3 = false
 
+let BarraVidaProta = Number(localStorage.getItem("BarraVidaProta")) || 100;
+
 
 
 let cash = Number(localStorage.getItem("cash")) || 0;
@@ -30,7 +33,6 @@ let contadordeespecial1 = Number(localStorage.getItem("contadordeespecial1")) ||
 let contadordeespecial2 = 0
 let imgtimeout = null
 let possibilidadeDeCasar = 0
-let BarraVidaProta = Number(localStorage.getItem("BarraVidaProta")) || 10;
 
 
 
@@ -44,7 +46,7 @@ function salvarLocalStorage() {
     trofeus.innerHTML = `<span class="spanAuraTrofeu">Trofeus:</span>  ${NumerosEmFormatoDiferente(quantidadeDeVitorias)}`
     localStorage.setItem("monkeybutton", monkeybutton.src)
 
-
+    
     localStorage.setItem("quantidadeDano", quantidadeDano);
     localStorage.setItem("quantidadeDeVitorias", quantidadeDeVitorias);
     localStorage.setItem("BarraVidaProta", BarraVidaProta);
@@ -66,6 +68,7 @@ const lojaList = [
         ganhoForça: 0,
         ganhoAura: 750,
         preco: 10000000,
+        ganhoVida: 0,
         tipo: "upgrade",
         descricao:"+750 de Aura"
     },
@@ -75,9 +78,22 @@ const lojaList = [
         ganhoAura: 1000,
         ganhoCash: 0,
         ganhoForça: 0,
+        ganhoVida: 0,
         preco: 50000000,
         tipo: "upgrade",
         descricao: "+1000 de Aura"
+    },
+    {
+        nome: "Super Soldado",
+        img: "assets/imgs/icons/soroSuperSoldado.png",
+        aura: 2500,
+        ganhoAura: 1500,
+        ganhoCash: 0,
+        ganhoForça: 25000,
+        ganhoVida: 1800,
+        preco: 100000000000000000,
+        tipo: "upgrade",
+        descricao:"+25K de Força & 1500 Aura"
     },
     {
         nome: "Anabolizante",
@@ -86,7 +102,9 @@ const lojaList = [
         ganhoAura: 500,
         ganhoCash: 0,
         ganhoForça: 1000,
+        ganhoVida: 500,
         preco: 100000000,
+
         tipo: "upgrade",
         descricao:"+1000 de Força & 500 Aura"
     },
@@ -175,6 +193,7 @@ function upgradeSkin(ganhoForça, ganhoAura, ganhoCash, valorLoja, img) {
         upgradeCash = ganhoCash
         cash -= valorLoja;
         aura += ganhoAura
+         
         
 
         monkeybutton.src = img;
@@ -188,13 +207,16 @@ function upgradeSkin(ganhoForça, ganhoAura, ganhoCash, valorLoja, img) {
     }
 }
 
-function upgradeUp(ganhoForça, ganhoAura, ganhoCash, valorLoja) {
+function upgradeUp(ganhoForça, ganhoAura, ganhoCash, valorLoja, ganhoVida) {
     if (cash >= valorLoja) {
         
         upgradeCash += ganhoCash
         quantidadeDano += ganhoForça
         cash -= valorLoja
         aura += ganhoAura
+        BarraVidaProta += ganhoVida
+        console.log(BarraVidaProta);
+        
         salvarLocalStorage()
     } else {
         audioClickNegado.play()
@@ -202,6 +224,9 @@ function upgradeUp(ganhoForça, ganhoAura, ganhoCash, valorLoja) {
 
     }
 }
+
+
+
 
 
 
@@ -219,7 +244,7 @@ for (let i = 0; i < lojaList.length; i++) {
 
             if (item.tipo.toLowerCase() === "upgrade") {
 
-                upgradeUp(item.ganhoForça, item.ganhoAura, item.ganhoCash, item.preco);
+                upgradeUp(item.ganhoForça, item.ganhoAura, item.ganhoCash, item.preco, item.ganhoVida);
                 console.log(aura);
                 console.log(quantidadeDano);
                 
@@ -335,7 +360,27 @@ const upgradesList = [
         aumento: 100000000000,
         tipo: "manual",
     },
-
+    {
+        nome: "Clique Bolado.",
+        descricao: "Adicionar 100.000.000.000.000 coins por Click",
+        preco: 1000000000000000,
+        aumento: 100000000000000,
+        tipo: "manual",
+    },
+    {
+        nome: "Clique Roubado.",
+        descricao: "Adicionar 100.000.000.000.000.000 coins por Click",
+        preco: 100000000000000000000,
+        aumento: 10000000000000000000,
+        tipo: "manual",
+    },
+    {
+        nome: "O Clique.",
+        descricao: "Adicionar 90.000.000.000.000.000.000 coins por Click",
+        preco: 10000000000000000,
+        aumento: 90000000000000000000,
+        tipo: "manual",
+    },
     {
         nome: "+10/s",
         descricao: "Macaco empreendedor.",
@@ -482,7 +527,7 @@ for (let i = 0; i < upgradesList.length; i++) {
                 funcaoUpgrade3(upgrade.preco, upgrade.aumento);
             }
 
-            upgrade.preco *= 2;
+            upgrade.preco *= 1.5;
 
 
             localStorage.setItem(`upgradePreco${i}`, upgrade.preco);
