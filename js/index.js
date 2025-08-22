@@ -84,6 +84,19 @@ const lojaList = [
         descricao: "+1000 de Aura"
     },
     {
+        nome: "Anabolizante",
+        img: "assets/imgs/icons/bomba.png",
+        aura: 2500,
+        ganhoAura: 500,
+        ganhoCash: 0,
+        ganhoForça: 1000,
+        ganhoVida: 500,
+        preco: 100000000,
+        
+        tipo: "upgrade",
+        descricao:"+1000 de Força & 500 Aura"
+    },
+    {
         nome: "Super Soldado",
         img: "assets/imgs/icons/soroSuperSoldado.png",
         aura: 2500,
@@ -96,17 +109,16 @@ const lojaList = [
         descricao:"+25K de Força & 1500 Aura"
     },
     {
-        nome: "Anabolizante",
-        img: "assets/imgs/icons/bomba.png",
-        aura: 2500,
-        ganhoAura: 500,
+        nome: "Mega Soldado",
+        img: "assets/imgs/icons/frascodeanabolizante.png",
+        aura: 5000,
+        ganhoAura: 3000,
         ganhoCash: 0,
-        ganhoForça: 1000,
-        ganhoVida: 500,
-        preco: 100000000,
-
+        ganhoForça: 100000,
+        ganhoVida: 50000,
+        preco: 10000000000000000000000,
         tipo: "upgrade",
-        descricao:"+1000 de Força & 500 Aura"
+        descricao:"+25K de Força & 1500 Aura" 
     },
     {
         nome: "Skin Mega Forte",
@@ -236,9 +248,9 @@ function upgradeUp(ganhoForça, ganhoAura, ganhoCash, valorLoja, ganhoVida) {
 for (let i = 0; i < lojaList.length; i++) {
     const item = lojaList[i];
     const LojaElem = document.getElementById(`Item${parseInt(i) + 1}`);
-
     if (item) {
-        LojaElem.addEventListener("click", () => {
+        LojaElem.addEventListener("click", (event) => {
+            event.stopPropagation();
 
 
 
@@ -363,21 +375,21 @@ const upgradesList = [
     {
         nome: "Clique Bolado.",
         descricao: "Adicionar 100.000.000.000.000 coins por Click",
-        preco: 1000000000000000,
+        preco: 10000000000000000000,
         aumento: 100000000000000,
         tipo: "manual",
     },
     {
         nome: "Clique Roubado.",
         descricao: "Adicionar 100.000.000.000.000.000 coins por Click",
-        preco: 100000000000000000000,
+        preco: 100000000000000000000000,
         aumento: 10000000000000000000,
         tipo: "manual",
     },
     {
         nome: "O Clique.",
         descricao: "Adicionar 90.000.000.000.000.000.000 coins por Click",
-        preco: 10000000000000000,
+        preco: 1000000000000000000000000,
         aumento: 90000000000000000000,
         tipo: "manual",
     },
@@ -590,7 +602,22 @@ const skins = [
         nome: "Macaco Interuniversal",
         img: "assets/Macaco Interuniversal.png",
         cashNecessario: 1000000000000000000
-    }
+    },
+    {
+        nome: "Macaco Guerreiro que Transcendo o Universo",
+        img: "assets/macaco guerreiro que transcende o universo.png",
+        cashNecessario: 10000000000000000000
+    },
+    {
+        nome: "Está Transcendendo",
+        img: "assets/está transcendendo.png",
+        cashNecessario: 10000000000000000000000000
+    },
+    {
+        nome: "Ele Transcendeu",
+        img: "assets/eletranscendeu.png",
+        cashNecessario: 1000000000000000000000000000
+    },
 ]
 
 
@@ -781,6 +808,7 @@ fecharmodalLogin.addEventListener("click", () => {
 
 fecharmodal.addEventListener("click", () => {
     modalUpgrade.style.display = "none"
+    modalLoja = false
 })
 
 fecharmodalLoja.addEventListener("click", () => {
@@ -803,6 +831,15 @@ let valorInput1 = document.querySelector(".inputLogin")
 let valorInput2 = document.querySelector(".InputNomeVerdadeiro")
 const finalizarLogin = document.querySelector(".botaoLogin")
 const modalLogin = document.querySelector(".modallogin")
+
+
+
+
+
+
+
+
+
 
 
 
