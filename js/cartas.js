@@ -31,6 +31,7 @@ cartaicon.addEventListener("click", ()=>{
 
 fecharmodalCarta.addEventListener("click", ()=>{
     cartasModal.style.display = "none"
+    modalcarta = false
 })
 
 const cartas = [
@@ -46,8 +47,8 @@ const cartas = [
 
 
 for(let carta of cartas){
-    let carta = `<h2 class="tituloCarta"></h2>
-    <p class="descricaoCarta"></p>`
+    carta = `<h2 class="tituloCarta">${carta.nome}</h2>
+    <p class="descricaoCarta"> Preço: ${carta.preco} Trofeus: ${carta.trofeuNecessario}</p>`
     const novaDiv = document.createElement("div")
     novaDiv.classList.add("cartas")
     novaDiv.innerHTML = carta

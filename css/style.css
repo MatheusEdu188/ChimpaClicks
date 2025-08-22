@@ -555,6 +555,20 @@ main {
     line-height: 1.5;
     text-align: justify;
     margin: 0 10px;
+    
+}
+
+.cartas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff7b00;
+    flex-direction: column;
+    margin: 10px;
+    margin-top: 20px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    cursor: pointer;
 }
 
 
