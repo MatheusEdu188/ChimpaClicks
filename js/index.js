@@ -116,9 +116,21 @@ const lojaList = [
         ganhoCash: 0,
         ganhoForça: 100000,
         ganhoVida: 50000,
-        preco: 10000000000000000000000,
+        preco: 1000000000000000000000,
         tipo: "upgrade",
-        descricao:"+25K de Força & 1500 Aura" 
+        descricao:"+100K de Força & 5K Aura" 
+    },
+    {
+        nome: "Nivele o Jogo",
+        img: "assets/imgs/icons/barrilicone.png",
+        aura: 50000,
+        ganhoAura: 500000,
+        ganhoCash: 0,
+        ganhoForça: 100000000000,
+        ganhoVida: 500000000,
+        preco: 1000000000000000000000000000000,
+        tipo: "upgrade",
+        descricao:"+100B de Força & 500K Aura" 
     },
     {
         nome: "Skin Mega Forte",
@@ -315,7 +327,7 @@ const upgradesList = [
     },
 
     {
-        nome: "10 por Clik",
+        nome: "20 por Clik",
         descricao: "Adicionar 10 coins por Click",
         preco: 400,
         aumento: 10,
@@ -415,33 +427,65 @@ const upgradesList = [
         tipo: "automatico",
     },
     {
-        nome: "+10000/s",
+        nome: "+100000/s",
         descricao: "Cidade do macaco.",
         preco: 5000000,
-        aumento: 10000,
-        tipo: "automatico",
-    },
-    {
-        nome: "+100000/s",
-        descricao: "Planeta das bananas.",
-        preco: 50000000,
         aumento: 100000,
         tipo: "automatico",
     },
     {
-        nome: "+1000000/s",
-        descricao: "Economia global do macaco.",
-        preco: 500000000,
-        aumento: 1000000,
+        nome: "+10000000/s",
+        descricao: "Planeta das bananas.",
+        preco: 50000000,
+        aumento: 10000000,
         tipo: "automatico",
     },
     {
-        nome: "+1000000000/s",
-        descricao: "Universo de macacos.",
-        preco: 10000000000,
-        aumento: 1000000000,
+        nome: "+100000000/s",
+        descricao: "Economia global do macaco.",
+        preco: 500000000,
+        aumento: 100000000,
         tipo: "automatico",
-    }
+    },
+    {
+        nome: "+1000000000000000000/s",
+        descricao: "Universo de macacos.",
+        preco: 10000000000000000,
+        aumento: 1000000000000000000,
+        tipo: "automatico",
+    },
+    {
+        nome: "+100000000000000000000/s",
+        descricao: "Os Macacos Extrauniversais.",
+        preco: 100000000000000000000,
+        aumento: 100000000000000000000,
+        tipo: "automatico",
+    },
+    {
+        nome: "+100000000000000000000000/s",
+        descricao: "Macacos Dimensionais.",
+        preco: 10000000000000000000000,
+        aumento: 100000000000000000000000,
+        tipo: "automatico",
+    },
+    {
+        nome: "+100000000000000000000000000000/s",
+        descricao: "Nada Pode Nos Parar.",
+        preco: 100000000000000000000000000000,
+        aumento: 10000000000000000000000000000,
+        tipo: "automatico",
+    },
+    {
+        nome: "+10000000000000000000000000000000000/s",
+        descricao: "Você Conseguiu.",
+        preco: 1100000000000000000000000000000000,
+        aumento: 10000000000000000000000000000000000,
+        tipo: "automatico",
+    },
+    
+    
+    
+
 ]
 
 
@@ -764,14 +808,24 @@ fecharmodalSkin.addEventListener("click", () => {
 
 const somDerrota = new Audio("assets/audio/SomDerrota.m4a")
 const somVitoria = new Audio("assets/audio/pt1.oga")
+const modalEscolhaCasar = document.querySelector(".modalEscolhaCasar")
+const escolhaCasarSim = document.getElementById("escolhaCasarSim")
+const escolhaCasarNao = document.getElementById("escolhaCasarNao")
+
+
+
+
 
 
 pedirCasamento.addEventListener("click", () => {
-    modalCasar.style.display = "flex"
-    if (cash >= 180000000000000000 && possibilidadeDeCasar >= 100 && quantidadeDeVitorias >= 100000 && aura >= 50000) {
+    modalEscolhaCasar.style.display = "flex"
+})
+
+escolhaCasarSim.addEventListener("click", ()=>{
+    if (cash >= 10000000000000000000000000000000000 && possibilidadeDeCasar >= 100 && quantidadeDeVitorias >= 100000 && aura >= 50000) {
         Resultado.innerHTML = "Ela Aceitou!"
         msgResultado.innerHTML = "Você levará uma vida deprimente a partir de agora. Ela gastará toda sua fortuna e logo logo sua vida se tornará miseravel novamente. Mas oq importa é que agora você tem ela. De qualquer forma... Parabéns!! Seu Objetivo foi concluido."
-
+        
     } else {
         Resultado.innerHTML = "Você foi Rejeitado!"
         msgResultado.innerHTML = "Ela te rejeitou e roubou toda sua fortuna"
@@ -785,11 +839,17 @@ pedirCasamento.addEventListener("click", () => {
         auras.textContent = `<h2 class="aura">h2>`
         somDerrota.play()
         salvarLocalStorage()
-
-
+        
+        
     }
-
+    modalEscolhaCasar.style.display = "none"
 })
+
+escolhaCasarNao.addEventListener("click", ()=>{
+    modalEscolhaCasar.style.display = "none"
+})
+
+
 
 fecharmodalCasar.addEventListener("click", () => {
     modalCasar.style.display = "none"

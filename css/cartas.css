@@ -1,0 +1,62 @@
+.modalEscolhaCarta{
+    display: none;
+}
+
+.titulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.textoCartas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 123, 0);
+    color: white;
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+
+.tituloCarta {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    
+    
+}
+
+.descricaoCarta {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #333;
+    line-height: 1.5;
+    text-align: justify;
+    margin: 0 10px;
+    
+}
+
+.cartas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff7b00;
+    flex-direction: column;
+    margin: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: solid 1px wheat;
+}

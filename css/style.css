@@ -456,6 +456,45 @@ main {
 
 }
 
+.modalEscolhaReset{
+    display: none;
+}
+
+.modalEscolhaCasar{
+    display: none;
+}
+
+#tituloModalCasar{
+    margin-top: 100px;
+    background-color: orange;
+    border-bottom-right-radius: 50px;
+    padding: 20px;
+}
+
+#tituloModalReset{
+    margin-top: 100px;
+    background-color: orange;
+    border-bottom-right-radius: 50px;
+    padding: 20px;
+}
+
+.escolhasDeModal{
+    background-color: #ff7b00;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+.escolhasDoModal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 100px;
+}
+
 #Resultado {
     font-size: 40px;
 
@@ -538,39 +577,6 @@ main {
 
 
 
-.tituloCarta {
-    font-family: 'Arial', sans-serif;
-    font-size: 28px;
-    font-weight: bold;
-    color: #4CAF50;
-    text-align: center;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 2px #000;
-}
-
-.descricaoCarta {
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-    color: #333;
-    line-height: 1.5;
-    text-align: justify;
-    margin: 0 10px;
-    
-}
-
-.cartas{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ff7b00;
-    flex-direction: column;
-    margin: 10px;
-    margin-top: 20px;
-    border-top-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-    cursor: pointer;
-}
-
 
 
 
@@ -618,20 +624,26 @@ main {
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 600px){
+    *{
+        user-select: none;
+    }
   .upgrade, .divLojaItem {
     flex: 1 1 100%; 
     max-width: 100%;
+    user-select: none;
   }
   
   .monkeycoins, .auras, .trofeus {
     font-size: 1rem;
     padding: 5px;
     font-family: 'Press Start 2P', cursive;
+    user-select: none;
   }
 
   #monkeyimg {
     max-width: 80vw;
     height: auto;
+    user-select: none;
   }
 }
