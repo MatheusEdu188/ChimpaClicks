@@ -1,34 +1,32 @@
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+============================== */
 * {
     margin: 0;
     user-select: none;
 }
 
-body{
+body {
     overflow: hidden;
-    
 }
 
-
-
+/* ==============================
+   ESTRUTURA PRINCIPAL
+============================== */
 main {
-    
     background-image: url("../assets/imgs/background.png");
     background-repeat: repeat;
     height: 200vw;
     font-family: "Roboto", sans-serif;
-
-
 }
 
-
-
-
+/* ==============================
+   MONKEY E NOME
+============================== */
 .monkey {
     display: flex;
     align-items: center;
     justify-content: center;
-
-
 }
 
 .divname {
@@ -41,14 +39,31 @@ main {
     font-style: normal;
 }
 
+#monkeyimg {
+    width: 30%;
+    cursor: pointer;
+    transition: ease 0.10s;
+    
+}
 
+#monkeyimg:active {
+    transform: scale(1.2);
+}
+
+.NameMonkey {
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px 4px black;
+}
+
+/* ==============================
+   ÁREA DE COMBATE
+============================== */
 .combateDiv {
     top: 50%;
     position: absolute;
     right: 5%;
     cursor: pointer;
     z-index: 10;
-
 }
 
 .combate {
@@ -56,65 +71,78 @@ main {
     border-radius: 100px;
 }
 
-#monkeyimg {
-    width: 300px;
-    cursor: pointer;
-    transition: ease 0.10s
-}
-
-#monkeyimg:active {
-    transform: scale(1.2);
-}
-
-.cashmonkey {
-    padding-top: 20px;
+/* ==============================
+   ÁREA DE CASH / FORTUNAS
+============================== */
+.containerCashMonkey {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #b57300;
+    padding-top: 1%;
+}
+
+.cashmonkey {
+    padding-top: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(133deg, rgba(181, 115, 0, 1) 0%, rgba(255, 166, 0, 1) 51%, rgba(255, 164, 36, 1) 84%);
-    border: solid 2px rgb(0, 0, 0);
-    padding: 10px;
-    margin-bottom: 10px;
+    border: solid 2px black;
+    padding: 1%;
+    margin-bottom: 1%;
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     font-family: 'Press Start 2P', cursive;
+    width: 60%;
+    height: 20%;
 }
 
-.outrasFortunas{
-    
+.outrasFortunas {
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 35%;
     padding: 10px;
-    background: #b57300;
     background: linear-gradient(133deg, rgba(181, 115, 0, 1) 0%, rgba(255, 166, 0, 1) 51%, rgba(255, 164, 36, 1) 84%);
-    border: solid 2px rgb(0, 0, 0);
+    border: solid 2px black;
     margin-left: 10px;
     border-bottom-left-radius: 30px;
     border-top-right-radius: 30px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-    
-
 }
 
+/* ==============================
+   ÁREA DE SKINS
+============================== */
+.SkinDiv {
+    position: absolute;
+    z-index: 11;
+    top: 70%;
+    left: 85%;
+}
 
-.skinItem{
+.skin {
+    width: 70%;
+    cursor: pointer;
+}
+
+#modalSkin {
+    display: none;
+}
+
+.skinItem {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-    
-  
 }
 
-.imgSkin{
+.imgSkin {
     width: 200px;
 }
 
-.itensSkin{
+.itensSkin {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -125,85 +153,16 @@ main {
     border-radius: 50px;
 }
 
-
-
-
-
-.containerCashMonkey{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 10px;
-}
-
-
+/* ==============================
+   ÁREA DE LOJA / UPGRADES
+============================== */
 .shop {
     cursor: pointer;
     position: absolute;
     z-index: 10;
-    top: 40%;
+    top: 45%;
     left: 2%;
     transform: translate(-50%, -50%);
-}
-
-.descricaoUpgrade{
-    font-size: 15px;
-    font-weight: 10;
-    margin-top: 10px;
-    color: white;
-}
-
-.preco{
-    margin-top: 10px;
-    font-size: 12px;
-    font-weight: 10;
-    color: rgb(0, 31, 0);
-
-}
-
-.tituloupgrade{
-    font-size: 25px
-}
-
-
-
-.pedirCasamento {
-    max-width: 50px;
-    position: absolute;
-    top: 20%;
-    z-index: 15;
-    left: 88%;
-    transform: translate(-50%, -50%);
-}
-
-.cartaicon{
-    position: absolute;
-    width: 15vh;
-    z-index: 1500;
-    top: 60%;
-    left: 2%;
-    cursor: pointer;
-}
-
-
-
-.NameMonkey {
-    color: rgb(255, 255, 255);
-    text-shadow: 4px 4px 4px black;
-}
-
-#Upgrade {
-    max-width: 10vw;
-    position: absolute;
-    z-index: 11;
-
-}
-
-#carrinho {
-    max-width: 10vw;
-    position: relative;
-    z-index: 10;
-
 }
 
 .loja {
@@ -213,40 +172,30 @@ main {
     top: 40%;
     right: 0;
     transform: translate(-50%, -50%);
-
 }
 
-.tituloupgrade {
-    font-size: 20px;
-    font-weight: 800;
-}
-
-
-#textoPedirCasamento{
-    font-size: 12px;
-    display: flex;
-    text-align: center;
-    font-family: 'Press Start 2P', cursive;
-}
-
-
-
-.botaoresetar{
-    width: 15vh;
-    top: 85%;
-    left: 2%;
-    z-index: 500;
+#Upgrade {
+    max-width: 10vw;
     position: absolute;
-    cursor: pointer;
+    z-index: 11;
 }
 
-.descricaoItem{
-    font-size: 8px;
-    font-weight: 100;
-    display: flex;
-    text-align: center;
-    font-family: 'Press Start 2P', cursive;
+#carrinho {
+    max-width: 10vw;
+    position: relative;
+    z-index: 10;
 }
+
+.upgrades {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 60%;
+    z-index: 10;
+}
+
 .upgrade {
     border: solid 1px black;
     background-color: rgb(255, 123, 0);
@@ -254,26 +203,24 @@ main {
     margin: 10px;
     border-radius: 5px;
     cursor: pointer;
-
 }
 
+.tituloupgrade {
+    font-size: 20px;
+    font-weight: 800;
+}
 
+.descricaoUpgrade {
+    font-size: 15px;
+    font-weight: 10;
+    margin-top: 10px;
+    color: white;
+}
 
-.upgrades {
-    display: flex;
-    flex-direction: column;
-    top: 10%;
-    left: 10%;
-    width: 60%;
-
-    position: relative;
-    z-index: 10;
-
-    position: absolute;
-
-
-
-
+.preco {
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgb(0, 31, 0);
 }
 
 .cost {
@@ -285,230 +232,12 @@ main {
     font-size: 20px;
 }
 
-.Elementos {
-    z-index: 1;
-    position: relative;
-
-
-
-}
-
-
-
-.modal {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-
-
-}
-
-#modalCasar {
-    display: none;
-}
-
-.modalloja {
-    display: none;
-}
-
-.modallogin {
+/* ==============================
+   ITENS DA LOJA
+============================== */
+.BodyLoja {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    top: 0;
-
 }
-
-.nomeverdadeiro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.tituloLogin {
-    color: rgb(0, 0, 0);
-    background-color: white;
-    border-radius: 5px;
-}
-
-
-.InputNomeVerdadeiro {
-    margin-top: 20px;
-}
-
-.botaoLogin {
-    width: 100px;
-    height: 50px;
-    border-radius: 10px;
-    background-color: orange;
-    border: none;
-    margin-top: 10px;
-}
-
-
-.inputLogin {
-    margin-top: 20px;
-    height: 20px;
-}
-
-.ColocarNome {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.SkinDiv{
-    position: absolute;
-    z-index: 11;
-    top: 70%;
-    left: 85%;
-    
-}
-.skin{
-    width: 70%;
-    cursor: pointer;
-}
-
-
-#modalSkin{
-    display: None;
-}
-
-
-
-
-
-.modalLoginBody {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-}
-
-#modalBody {
-
-    background-image: url(../assets/backgroundmodal.png);
-    position: relative;
-    width: 50%;
-    height: 90%;
-    overflow-y: auto;
-    display: block;
-    border: solid 2px black;
-    border-radius: 5px;
-
-}
-
-#modalBody2 {
-
-    background-image: url(../assets/backgroundmodal.png);
-    position: relative;
-    width: 50%;
-    height: 90%;
-    overflow-y: auto;
-    display: block;
-    border: solid 2px black;
-    border-radius: 5px;
-
-}
-
-#modalBody3 {
-
-    background-image: url(../assets/backgroundmodal.png);
-    position: relative;
-    width: 50%;
-    height: 90%;
-    overflow-y: auto;
-    display: block;
-    border: solid 2px black;
-    border-radius: 5px;
-
-}
-
-#modalBody3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-#modalBody4 {
-
-    background-image: url(../assets/backgroundmodal.png);
-    position: relative;
-    width: 50%;
-    height: 90%;
-    overflow-y: auto;
-    display: block;
-    border: solid 2px black;
-    border-radius: 5px;
-
-}
-
-.modalEscolhaReset{
-    display: none;
-}
-
-.modalEscolhaCasar{
-    display: none;
-}
-
-#tituloModalCasar{
-    margin-top: 100px;
-    background-color: orange;
-    border-bottom-right-radius: 50px;
-    padding: 20px;
-}
-
-#tituloModalReset{
-    margin-top: 100px;
-    background-color: orange;
-    border-bottom-right-radius: 50px;
-    padding: 20px;
-}
-
-.escolhasDeModal{
-    background-color: #ff7b00;
-    border-bottom-right-radius: 10px;
-    border-top-left-radius: 10px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-
-.escolhasDoModal{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 100px;
-}
-
-#Resultado {
-    font-size: 40px;
-
-
-}
-
-#msgResultado {
-    font-size: 20px;
-    color: rgb(0, 0, 0);
-    background-color: white;
-    padding: 10px;
-}
-
-
 
 .divLojaItem {
     display: flex;
@@ -543,27 +272,204 @@ main {
     font-weight: 500;
 }
 
-
-.spanAuraTrofeu{
+.spanAuraTrofeu {
     color: rgb(2, 2, 2);
 }
 
+/* ==============================
+   BOTÕES ESPECIAIS / ÍCONES
+============================== */
+.pedirCasamento {
+    max-width: 50px;
+    position: absolute;
+    top: 20%;
+    z-index: 15;
+    left: 88%;
+    transform: translate(-50%, -50%);
+}
 
+.cartaicon {
+    position: absolute;
+    width: 15vh;
+    z-index: 1500;
+    top: 65%;
+    left: 2%;
+    cursor: pointer;
+}
 
-
+.botaoresetar {
+    width: 15vh;
+    top: 85%;
+    left: 2%;
+    z-index: 500;
+    position: absolute;
+    cursor: pointer;
+}
 
 #coraçãoicon {
     width: 100px;
     cursor: pointer;
 }
 
-.BodyLoja {
-    display: flex;
+/* ==============================
+   MODAIS (GERAL)
+============================== */
+.modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
+.modalloja,
+.modalEscolhaReset,
+.modalEscolhaCasar,
+#modalCasar {
+    display: none;
+}
 
+.modallogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    top: 0;
+}
 
+.modalLoginBody {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
 
+/* ==============================
+   MODAIS ESPECÍFICOS
+============================== */
+#modalBody,
+#modalBody2,
+#modalBody3,
+#modalBody4 {
+    background-image: url(../assets/backgroundmodal.png);
+    position: relative;
+    width: 50%;
+    height: 90%;
+    overflow-y: auto;
+    display: block;
+    border: solid 2px black;
+    border-radius: 5px;
+}
+
+#modalBody3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#tituloModalCasar,
+#tituloModalReset {
+    margin-top: 100px;
+    background-color: orange;
+    border-bottom-right-radius: 50px;
+    padding: 20px;
+}
+
+.escolhasDeModal {
+    background-color: #ff7b00;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.escolhasDoModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 100px;
+}
+
+/* ==============================
+   LOGIN / INPUTS
+============================== */
+.nomeverdadeiro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.tituloLogin {
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.InputNomeVerdadeiro {
+    margin-top: 20px;
+}
+
+.botaoLogin {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: orange;
+    border: none;
+    margin-top: 10px;
+}
+
+.inputLogin {
+    margin-top: 20px;
+    height: 20px;
+}
+
+.ColocarNome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ==============================
+   RESULTADOS / TEXTOS
+============================== */
+#Resultado {
+    font-size: 40px;
+}
+
+#msgResultado {
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    padding: 10px;
+}
+
+#textoPedirCasamento {
+    font-size: 12px;
+    display: flex;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.descricaoItem {
+    font-size: 8px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* ==============================
+   BOTÃO FECHAR MODAL
+============================== */
 #fecharmodal {
     top: 1%;
     position: absolute;
@@ -573,21 +479,9 @@ main {
     left: 4%;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ==============================
+   RESPONSIVIDADE
+============================== */
 .upgrades, .BodyLoja {
   display: flex;
   flex-wrap: wrap; 
@@ -615,7 +509,6 @@ main {
   height: auto;
   display: block;
   margin: 0 auto 8px auto;
-  font-family: 'Press Start 2P', cursive;
 }
 
 .precoLoja, .tituloupgrade {
@@ -623,27 +516,20 @@ main {
   font-family: 'Press Start 2P', cursive;
 }
 
-
-@media (max-width: 600px){
-    *{
-        user-select: none;
-    }
+/* Modo celular */
+@media (max-width: 600px) {
   .upgrade, .divLojaItem {
     flex: 1 1 100%; 
     max-width: 100%;
-    user-select: none;
   }
   
   .monkeycoins, .auras, .trofeus {
     font-size: 1rem;
     padding: 5px;
-    font-family: 'Press Start 2P', cursive;
-    user-select: none;
   }
 
   #monkeyimg {
     max-width: 80vw;
     height: auto;
-    user-select: none;
   }
 }

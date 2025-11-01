@@ -1,0 +1,45 @@
+.iconTreino{
+    cursor: pointer;
+    position: absolute;
+    top: 25%;
+    left: 2%;
+    width: 10%;
+    border-radius: 500px;
+    z-index: 100;
+}
+
+
+#iconHalter{
+    width: 40%;
+}
+
+
+
+
+
+
+
+/* aba exclusiva de modal */
+
+
+
+.modalTreino{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    
+    width: 165vh;
+    height: 100vh;
+    
+    display: flex;
+}
+
+#modalTreino{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    width: 70%;
+    height: 95%;
+    
+}

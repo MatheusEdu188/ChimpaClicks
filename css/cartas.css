@@ -27,8 +27,8 @@
 
 
 .tituloCarta {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 15px;
+    font-family: 'Roboto', cursive;
+    font-size: 25px;
     font-weight: bold;
     color: #000000;
     text-align: center;
@@ -40,7 +40,7 @@
 
 .descricaoCarta {
     font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
+    font-size: 15px;
     color: #333;
     line-height: 1.5;
     text-align: justify;
@@ -58,5 +58,5 @@
     margin-top: 20px;
     border-radius: 10px;
     cursor: pointer;
-    border: solid 1px wheat;
+    
 }
